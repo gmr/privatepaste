@@ -1,0 +1,17 @@
+{application, privatepaste,
+ [
+  {description, "PrivatePaste.com"},
+  {vsn, "2.0.0"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  crypto,
+                  cowboy,
+                  compiler,
+                  syntax_tools,
+                  erlydtl
+                 ]},
+  {mod, {privatepaste_app, []}},
+  {env, [{http_port, 8080}]}
+ ]}.

@@ -1,0 +1,7 @@
+erl_crash.dump
+ebin
+.rebar
+_rel
+.DS_Store
+.beam
+deps
