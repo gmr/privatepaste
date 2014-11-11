@@ -9,7 +9,6 @@
          handle_info/2,
          terminate/2,
          language/1,
-         translate/2,
          code_change/3]).
 
 -define(ACCEPTORS,  10).
@@ -75,20 +74,16 @@ language(Req) ->
   {ok, Langs, _} = cowboy_req:parse_header(<<"accept-language">>, Req, ?DEFAULT_LANGUAGE),
   binary_to_list(lists:last(proplists:get_keys(Langs))).
 
-
-translate(Val, Locale) ->
-  gettext:key2str(Val, Locale).
-
-
 %% ------------------------------------------------------------------
 %% Hijack outbound responses to provide error pages
 %% ------------------------------------------------------------------
 
 on_response(Code, _Headers, _Body, Req) when is_integer(Code), Code >= 400 ->
   Message = proplists:get_value(Code, ?STATUS_CODES, <<"Undefined Error Code">>),
-
+  Opts = [{translation_fun, fun(Key, Locale) -> gettext:key2str(Key, Locale) end},
+          {locale, privatepaste_http:language(Req)}],
   {ok, Body} = error_page_dtl:render([{code, integer_to_list(Code)},
-                                      {message, Message}]),
+                                      {message, Message}], Opts),
   Headers = [{<<"Content-Type">>, <<"text/html">>}],
   {ok, Req2} = cowboy_req:reply(Code, Headers, Body, Req),
   Req2;

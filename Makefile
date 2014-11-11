@@ -46,6 +46,7 @@ clean:
 	@( rm -f static/fonts/* )
 	@( rm -f erl_crash.dump )
 	@( rm -f $(PO_PATH)/gettext.po )
+	@( rm translations/gettext_server_db.dets )
 
 run:
 	@( erl -pa  ebin deps/*/ebin -s privatepaste )

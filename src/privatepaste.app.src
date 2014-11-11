@@ -16,5 +16,5 @@
                   erlydtl
                  ]},
   {mod, {privatepaste_app, []}},
-  {env, [{http_port, 8081}]}
+  {env, [{http_port, 8080}]}
  ]}.
