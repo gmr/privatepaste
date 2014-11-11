@@ -5,3 +5,6 @@ _rel
 .DS_Store
 .beam
 deps
+bower_components
+static/css
+static/fonts
