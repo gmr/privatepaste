@@ -6,7 +6,7 @@
 
 -export([start/0]).
 
--define(APPS, [crypto, ranch, cowlib, cowboy, compiler, syntax_tools, gettext, erlydtl, privatepaste]).
+-define(APPS, [sasl, crypto, ranch, cowlib, cowboy, compiler, syntax_tools, erlydtl, privatepaste]).
 
 start() ->
   start_apps(?APPS).

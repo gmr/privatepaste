@@ -6,13 +6,15 @@
   {applications, [
                   kernel,
                   stdlib,
+                  sasl,
                   crypto,
+                  ranch,
+                  cowlib,
                   cowboy,
                   compiler,
                   syntax_tools,
-                  gettext,
                   erlydtl
                  ]},
   {mod, {privatepaste_app, []}},
-  {env, [{http_port, 8080}]}
+  {env, [{http_port, 8081}]}
  ]}.

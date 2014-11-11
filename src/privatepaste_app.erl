@@ -5,13 +5,14 @@
 %% Application callbacks
 -export([start/2, stop/1]).
 
--define(APPS, [crypto, ranch, cowlib, cowboy, compiler, syntax_tools, erlydtl]).
+-define(APPS, [crypto, ranch, cowlib, cowboy, compiler, syntax_tools, gettext, erlydtl]).
 
 %% ===================================================================
 %% Application callbacks
 %% ===================================================================
 
 start(_StartType, _StartArgs) ->
+    application:set_env(gettext, gettext_dir, "translations"),
     ok = ensure_started(?APPS),
     privatepaste_sup:start_link().
 

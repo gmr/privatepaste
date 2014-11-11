@@ -8,11 +8,16 @@
          handle_cast/2,
          handle_info/2,
          terminate/2,
+         language/1,
+         translate/2,
          code_change/3]).
 
--define(ACCEPTORS,  100).
+-define(ACCEPTORS,  10).
+-define(DEFAULT_LANGUAGE, "en").
 
--record(state, {}).
+-include("privatepaste_status_codes.hrl").
+
+-record(state, {locales}).
 
 %% ------------------------------------------------------------------
 %% API Function Definitions
@@ -20,7 +25,6 @@
 
 start_link() ->
   gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
-
 
 
 %% ------------------------------------------------------------------
@@ -32,8 +36,9 @@ init([]) ->
     cowboy:start_http(privatepaste_listener,
                       ?ACCEPTORS,
                       [{port, port()}],
-                      [{env, [{dispatch, Dispatch}]}]),
-    {ok, #state{}}.
+                      [{env, [{dispatch, Dispatch}]},
+                       {onresponse, fun on_response/4}]),
+    {ok, #state{locales=gettext:all_lcs()}}.
 
 handle_call(_Request, _From, State) ->
     {noreply, State}.
@@ -62,9 +67,34 @@ routes() ->
       {"/static/[...]", cowboy_static, {dir, [<<"static">>],
                                         [{mimetypes, cow_mimetypes, all},
                                          {dir_handler, directory_handler}]}}
-      %%%{"/_", privatepaste_404, []}
     ]}
   ].
+
+
+language(Req) ->
+  {ok, Langs, _} = cowboy_req:parse_header(<<"accept-language">>, Req, ?DEFAULT_LANGUAGE),
+  binary_to_list(lists:last(proplists:get_keys(Langs))).
+
+
+translate(Val, Locale) ->
+  gettext:key2str(Val, Locale).
+
+
+%% ------------------------------------------------------------------
+%% Hijack outbound responses to provide error pages
+%% ------------------------------------------------------------------
+
+on_response(Code, _Headers, _Body, Req) when is_integer(Code), Code >= 400 ->
+  Message = proplists:get_value(Code, ?STATUS_CODES, <<"Undefined Error Code">>),
+
+  {ok, Body} = error_page_dtl:render([{code, integer_to_list(Code)},
+                                      {message, Message}]),
+  Headers = [{<<"Content-Type">>, <<"text/html">>}],
+  {ok, Req2} = cowboy_req:reply(Code, Headers, Body, Req),
+  Req2;
+
+on_response(_Code, _Headers, _Body, Req) ->
+	Req.
 
 port() ->
   case os:getenv("PORT") of

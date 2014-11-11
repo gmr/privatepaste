@@ -15,7 +15,7 @@
     <nav class="navbar navbar-default navbar-fixed-top navbar-inverse hidden-print" role="navigation">
       {% include "includes/navigation.dtl" %}
     </nav>
-    <div id="content">{% include "app/main.dtl" %}</div>
+    <div id="content">{% block content %}Unextend Base{% endblock %}</div>
     <div class="user"></div>
     <footer class="hidden-print">{% include "includes/footer.dtl" %}</footer>
   </body>

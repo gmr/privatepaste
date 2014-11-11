@@ -10,6 +10,7 @@ YEAR = `date +%Y`
 FULLNAME = `git config --global --get user.name`
 EMAIL = `git config --global --get user.email`
 
+CHARSET = ISO-8859-1
 GETTEXT_DIR = translations
 DEFAULT_LANGUAGE = en
 PO_PATH = $(GETTEXT_DIR)/lang/default/$(DEFAULT_LANGUAGE)
@@ -44,6 +45,7 @@ clean:
 	@( rm -f static/css/* )
 	@( rm -f static/fonts/* )
 	@( rm -f erl_crash.dump )
+	@( rm -f $(PO_PATH)/gettext.po )
 
 run:
 	@( erl -pa  ebin deps/*/ebin -s privatepaste )
@@ -61,5 +63,8 @@ po:
 	@( sed -i "" "s/FIRST AUTHOR/$(FULLNAME)/g" $(PO_PATH)/gettext.po )
 	@( sed -i "" "s/FULL NAME/$(FULLNAME)/g" $(PO_PATH)/gettext.po )
 	@( sed -i "" "s/EMAIL@ADDRESS/$(EMAIL)/g" $(PO_PATH)/gettext.po )
+	@( sed -i "" "s/CHARSET/$(CHARSET)/g" $(PO_PATH)/gettext.po )
+	@( msgen -o $(PO_PATH)/gettext.po $(PO_PATH)/gettext.po )
+	@( echo "Updated $(PO_PATH)/gettext.po" )
 
 .PHONY: all deps compile clean run
