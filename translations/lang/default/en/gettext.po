@@ -1,0 +1,34 @@
+# PrivatePaste
+# Copyright (C) 2014 Poison Pen LLC
+# This file is distributed under the same license as the PrivatePaste package.
+# Gavin M. Roy <gavinmroy@gmail.com>, 2014.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PrivatePaste 2.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-10 22:08-0500\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Gavin M. Roy <gavinmroy@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/includes/navigation.dtl:13
+msgid "New Paste"
+msgstr ""
+
+#: templates/base.dtl:4 templates/includes/navigation.dtl:9
+msgid "PrivatePaste.com"
+msgstr ""
+
+#: templates/includes/footer.dtl:2
+msgid "Terms & Conditions"
+msgstr ""
+
+#: templates/includes/navigation.dtl:3
+msgid "Toogle Navigation"
+msgstr ""
