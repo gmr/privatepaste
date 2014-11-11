@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Private Paste</title>
+    <title>{% block title %}{{ _("PrivatePaste.com") }}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- script data-main="/static/js/main" src="/static/js/lib/require.js"></script -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/ico/privatepaste-144.png">
+     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/ico/privatepaste-144.png">
     <link rel="apple-touch-icon-precomposed" sizes="128x128" href="/static/ico/privatepaste-128.png">
     <link rel="apple-touch-icon-precomposed" sizes="96x96" href="/static/ico/privatepaste-96.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/ico/privatepaste-72.png">
     <link rel="apple-touch-icon-precomposed" href="/static/ico/privatepaste-60.png">
     <link rel="shortcut icon" href="/static/ico/privatepaste.ico">
-    <!-- link href="/static/css/privatepaste.css" rel="stylesheet" media="screen" -->
+    <link href="/static/css/privatepaste.css" rel="stylesheet" media="screen">
   </head>
   <body>
-    {% block content %}No-Content{% endblock %}
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse hidden-print" role="navigation">
+      {% include "includes/navigation.dtl" %}
+    </nav>
+    <div id="content">{% include "app/main.dtl" %}</div>
+    <div class="user"></div>
+    <footer class="hidden-print">{% include "includes/footer.dtl" %}</footer>
   </body>
 </html>
