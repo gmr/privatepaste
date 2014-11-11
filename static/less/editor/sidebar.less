@@ -1,0 +1,69 @@
+#sidebar {
+  float: right;
+  width: @sidebar-width;
+  margin: 4px 5px;
+  position: relative;
+  padding: 0;
+  overflow: auto;
+  min-height: 475px;
+  z-index: 150;
+  .panel-group {
+    .panel {
+      margin: 0 0 5px 0;
+    }
+  }
+  select {
+    margin-left: 2em;
+    width: 85%;
+  }
+  .row {
+    padding: 0;
+    margin: 0;
+    .col-md-6 {
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+  }
+  .token {
+    padding-left: 2em;
+  }
+
+  .form-group {
+    .col-sm-4,
+    .col-sm-5,
+    .col-sm-6,
+    .col-sm-7 {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    > button,
+    .input-group {
+      margin-left: 2em;
+    }
+  }
+
+  .fa {
+    margin-top: 3px;
+  }
+
+  .dl-horizontal {
+    margin: 0;
+    padding: 0;
+    dt {
+      width: 100px;
+    }
+    dd {
+      margin-left: 105px;
+    }
+  }
+
+  .btn-sidebar {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: @font-size-h4;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
