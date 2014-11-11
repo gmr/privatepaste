@@ -10,7 +10,7 @@ init(_Type, Req, _Opts) ->
     {ok, Req, undefined_state}.
 
 handle(Req, State) ->
-    {ok, Body} = index_dtl:render([]),
+    {ok, Body} = base_dtl:render([]),
     Headers = [{<<"Content-Type">>, <<"text/html">>}],
     {ok, Req2} = cowboy_req:reply(200, Headers, Body, Req),
     {ok, Req2, State}.
