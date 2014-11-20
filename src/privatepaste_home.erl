@@ -1,21 +1,25 @@
 -module(privatepaste_home).
 
--behavior(cowboy_http_handler).
+-export([init/2,
+         content_types_provided/2,
+         handle_html/2,
+         terminate/3]).
 
--export([init/3]).
--export([handle/2]).
--export([terminate/3]).
+-include("privatepaste.hrl").
 
-init(_Type, Req, _Opts) ->
-    {ok, Req, undefined_state}.
+init(Req, Opts) ->
+  {cowboy_rest, Req, Opts}.
 
-handle(Req, State) ->
-  Opts = [{translation_fun, fun(Key, Locale) -> gettext:key2str(Key, Locale) end},
-          {locale, privatepaste_http:language(Req)}],
-  {ok, Body} = editor_dtl:render([], Opts),
-  Headers = [{<<"Content-Type">>, <<"text/html">>}],
-  {ok, Req2} = cowboy_req:reply(200, Headers, Body, Req),
-  {ok, Req2, State}.
+content_types_provided(Req, State) ->
+  {[
+    {?MIME_TYPE_HTML, handle_html}
+  ], Req, State}.
 
 terminate(_Reason, _Req, _State) ->
     ok.
+
+handle_html(Req, State) ->
+    Opts = [{translation_fun, ?TRANSLATE,
+            {locale, privatepaste_util:get_language(Req)}],
+    {ok, Body} = editor_dtl:render([], Opts),
+    {Body, Req, State}.

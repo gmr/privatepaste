@@ -1,3 +1,11 @@
+
+-record(state, {languages}).
+
+-define(DEFAULT_LANGUAGE, "en").
+
+-define(MIME_TYPE_HTML, <<"text/html">>).
+-define(MIME_TYPE_JSON, <<"application/json">>).
+
 -define(STATUS_CODES, [{400, <<"Bad Request">>},
                        {401, <<"Unauthorized">>},
                        {402, <<"Payment Required">>},
@@ -9,7 +17,6 @@
                        {408, <<"Request Timeout">>},
                        {409, <<"Conflict">>},
                        {410, <<"Gone">>},
-                       {411, <<"Gone">>},
                        {411, <<"Length Required">>},
                        {412, <<"Precondition Failed">>},
                        {413, <<"Request Entity Too Large">>},
@@ -22,3 +29,5 @@
                        {503, <<"Service Unavailable">>},
                        {504, <<"Gateway Timeout">>},
                        {505, <<"HTTP Version Not Supported">>}]).
+
+-define(TRANSLATE, fun(Key, Locale) -> gettext:key2str(Key, Locale) end}).

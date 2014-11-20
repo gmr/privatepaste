@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PrivatePaste 2.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-10 23:46-0500\n"
+"POT-Creation-Date: 2014-11-19 23:29-0500\n"
 "PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Gavin M. Roy <gavinmroy@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,18 +17,62 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/error_page.dtl:4
+#: templates/info.dtl:30
+msgid "Application"
+msgstr "Application"
+
+#: templates/info.dtl:2 templates/info.dtl:7
+msgid "Application Report"
+msgstr "Application Report"
+
+#: templates/info.dtl:32
+msgid "Description"
+msgstr "Description"
+
+#: templates/info.dtl:12
+msgid "Erlang Version"
+msgstr "Erlang Version"
+
+#: templates/error.dtl:5
 msgid "Error"
 msgstr "Error"
+
+#: templates/info.dtl:18
+msgid "Language"
+msgstr "Language"
+
+#: templates/info.dtl:26
+msgid "Loaded Applications"
+msgstr "Loaded Applications"
+
+#: templates/info.dtl:49
+msgid "Memory Utilization"
+msgstr "Memory Utilization"
 
 #: templates/app/editor.dtl:2 templates/includes/navigation.dtl:13
 msgid "New Paste"
 msgstr "New Paste"
 
-#: templates/base.dtl:4 templates/error_page.dtl:2 templates/app/editor.dtl:2
+#: templates/info.dtl:10
+msgid "Node"
+msgstr "Node"
+
+#: templates/base.dtl:4 templates/error.dtl:2 templates/app/editor.dtl:2
 #: templates/includes/navigation.dtl:9
 msgid "PrivatePaste.com"
 msgstr "PrivatePaste.com"
+
+#: templates/info.dtl:64
+msgid "Request Headers"
+msgstr "Request Headers"
+
+#: templates/info.dtl:14
+msgid "Running Processes"
+msgstr "Running Processes"
+
+#: templates/info.dtl:16
+msgid "System Architecture"
+msgstr "System Architecture"
 
 #: templates/includes/footer.dtl:2
 msgid "Terms & Conditions"
@@ -37,3 +81,7 @@ msgstr "Terms & Conditions"
 #: templates/includes/navigation.dtl:3
 msgid "Toogle Navigation"
 msgstr "Toogle Navigation"
+
+#: templates/info.dtl:31
+msgid "Version"
+msgstr "Version"

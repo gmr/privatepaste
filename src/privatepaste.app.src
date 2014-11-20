@@ -2,19 +2,21 @@
  [
   {description, "PrivatePaste.com"},
   {vsn, "2.0.0"},
-  {registered, []},
-  {applications, [
-                  kernel,
-                  stdlib,
-                  sasl,
-                  crypto,
-                  ranch,
-                  cowlib,
-                  cowboy,
-                  compiler,
-                  syntax_tools,
-                  erlydtl
-                 ]},
-  {mod, {privatepaste_app, []}},
-  {env, [{http_port, 8080}]}
- ]}.
+  {applications,
+    [
+     kernel,
+     stdlib,
+     lager,
+     cowboy,
+     jiffy,
+     gettext,
+     erlydtl
+    ]},
+  {modules, []},
+  {mod, {privatepaste, []}},
+  {env, [{http_port, 8080},
+         {http_listener_count, 100},
+         {http_timeout, 12000},
+         {http_compress, true}]}
+ ]
+}.

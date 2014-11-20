@@ -1,0 +1,8 @@
+{% extends "base.dtl" %}
+{% block title %}{{ _("PrivatePaste.com") }} :: {{ message }}{% endblock %}
+{% block content %}
+<div class="container">
+  <h1 class="text-error"><i class="fa fa-empire"></i> {{ _("Error") }}: {{ code }}</h1>
+  <p>{{ message }}</p>
+</div>
+{% endblock %}

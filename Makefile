@@ -26,15 +26,19 @@ CSS_OUT = static/css/privatepaste.css
 
 all: deps compile static po
 
+bower:
+	@( bower -s install )
+
 less:
 	@( $(LESSC) --verbose -x --source-map=${CSS_OUT}.map --include-path=${LESS_INCLUDE} ${LESS_IN} ${CSS_OUT} )
 
 fonts:
-	@( cp ${FONTAWESOME}/fonts/* static/fonts/ )
+	@( mkdir -p static/fonts )
+	@( cp $(FONTAWESOME)/fonts/* static/fonts/ )
 
 static: less fonts
 
-deps:
+deps: bower
 	@( $(REBAR) get-deps )
 
 compile: clean
@@ -46,10 +50,10 @@ clean:
 	@( rm -f static/fonts/* )
 	@( rm -f erl_crash.dump )
 	@( rm -f $(PO_PATH)/gettext.po )
-	@( rm translations/gettext_server_db.dets )
+	@( rm -f translations/gettext_server_db.dets )
 
 run:
-	@( erl -pa  ebin deps/*/ebin -s privatepaste )
+	@( erl +W w -pa ebin deps/*/ebin -config rel/sys.config -sname privatepaste -s privatepaste )
 
 release: compile
 	@( $(RELX) release )

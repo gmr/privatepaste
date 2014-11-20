@@ -9,3 +9,4 @@ bower_components
 static/css
 static/fonts
 gettext_server_db.dets
+logs

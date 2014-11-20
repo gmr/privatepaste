@@ -1,19 +1,19 @@
-%% ------------------------------------------------------------------
-%% Module used for running the development version of the app only
-%% ------------------------------------------------------------------
-
 -module(privatepaste).
 
--export([start/0]).
-
--define(APPS, [sasl, crypto, ranch, cowlib, cowboy, compiler, syntax_tools, erlydtl, privatepaste]).
+-export([start/0, start/2, stop/0, stop/1]).
 
 start() ->
-  start_apps(?APPS).
+    lager:start(),
+    application:set_env(gettext, gettext_dir, "translations"),
+    {ok, _Started} = application:ensure_all_started(privatepaste).
 
-start_apps([]) -> ok;
-start_apps([App | Apps]) ->
-  case application:start(App) of
-    ok -> start_apps(Apps);
-    {error, {already_started, App}} -> start_apps(Apps)
-  end.
+start(_StartType, _StartArgs) ->
+    lager:start(),
+    application:set_env(gettext, gettext_dir, "translations"),
+    privatepaste_sup:start_link().
+
+stop() ->
+    application:stop(privatepaste).
+
+stop(_State) ->
+    ok.

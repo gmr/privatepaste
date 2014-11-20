@@ -1,6 +1,0 @@
-{% extends "base.dtl" %}
-{% block title %}{{ _("PrivatePaste.com") }} :: {{ message }}{% endblock %}
-{% block content %}
-<h1>{{ _("Error") }}: {{ code }}</h1>
-<p>{{ message }}</p>
-{% endblock %}

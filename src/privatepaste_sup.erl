@@ -23,4 +23,4 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
-    {ok, { {one_for_one, 5, 10}, [?CHILD(privatepaste_http, worker)]} }.
+    {ok, { {one_for_one, 5, 10}, [?CHILD(privatepaste_listener, worker)]} }.
