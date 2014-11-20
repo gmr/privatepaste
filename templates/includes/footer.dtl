@@ -1,6 +1,6 @@
 <div class="row hidden-sm hidden-xs">
   <div class="col-sm-4"><a href="/terms">{{ _("Terms & Conditions") }}</a></div>
   <div class="col-sm-4 text-center" data-bind="version">2.0.0</div>
-  <div class="col-sm-4 text-right">&copy; 2006 &ndash; <span data-bind="year">2014</span> <a class="poisonpenllc" href="http://poisonpenllc.com">Poison Pen LLC</a></div>
+  <div class="col-sm-4 text-right">&copy; 2006 &ndash; {% now "Y" %} <a class="poisonpenllc" href="http://poisonpenllc.com">Poison Pen LLC</a></div>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom navbar-inverse visible-sm visible-xs hidden" role="navigation"></nav>

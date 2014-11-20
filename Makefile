@@ -28,6 +28,17 @@ all: deps compile static po
 
 bower:
 	@( bower -s install )
+	@( cp bower_components/backbone/backbone.js static/js/vendor/ )
+	@( cp bower_components/jquery/dist/jquery.min.* static/js/vendor/ )
+	@( cp bower_components/requirejs/require.js static/js/ )
+	@( cp bower_components/underscore/underscore-min.* static/js/vendor/ )
+
+codemirror:
+	@( mkdir -p static/css/lib static/js/vendor/codemirror )
+	@( cp $(CODEMIRROR)/lib/codemirror.css static/css/ )
+	@( cp $(CODEMIRROR)/lib/codemirror.js static/js/vendor/codemirror )
+	@( cp -r $(CODEMIRROR)/addon static/js/vendor/codemirror/ )
+	@( cp -r $(CODEMIRROR)/mode static/js/vendor/codemirror/ )
 
 less:
 	@( $(LESSC) --verbose -x --source-map=${CSS_OUT}.map --include-path=${LESS_INCLUDE} ${LESS_IN} ${CSS_OUT} )
@@ -36,7 +47,7 @@ fonts:
 	@( mkdir -p static/fonts )
 	@( cp $(FONTAWESOME)/fonts/* static/fonts/ )
 
-static: less fonts
+static: less fonts codemirror
 
 deps: bower
 	@( $(REBAR) get-deps )
@@ -46,7 +57,7 @@ compile: clean
 
 clean:
 	@( $(REBAR) clean )
-	@( rm -f static/css/* )
+	@( rm -f $(CSS_OUT) )
 	@( rm -f static/fonts/* )
 	@( rm -f erl_crash.dump )
 	@( rm -f $(PO_PATH)/gettext.po )

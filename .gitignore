@@ -8,5 +8,6 @@ deps
 bower_components
 static/css
 static/fonts
+static/js
 gettext_server_db.dets
 logs
