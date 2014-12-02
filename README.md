@@ -9,4 +9,4 @@ Build requirements
 - gettext (including xgettext app)
 - nodejs && npm
   - bower
-  - lessc
+  - less
