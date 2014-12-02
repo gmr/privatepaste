@@ -28,6 +28,7 @@ all: deps compile static po
 
 bower:
 	@( bower -s install )
+	@( mkdir -p static/js/vendor )
 	@( cp bower_components/backbone/backbone.js static/js/vendor/ )
 	@( cp bower_components/jquery/dist/jquery.min.* static/js/vendor/ )
 	@( cp bower_components/requirejs/require.js static/js/ )
