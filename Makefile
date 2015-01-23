@@ -19,7 +19,7 @@ BOOTSTRAP = bower_components/bootstrap
 CODEMIRROR = bower_components/codemirror
 FONTAWESOME = bower_components/font-awesome
 
-LESS_INCLUDE = ${BOOTSTRAP}/less:${CODEMIRROR}/lib:${FONTAWESOME}/less
+LESS_INCLUDE = ${BOOTSTRAP}/less:${CODEMIRROR}/lib:${FONTAWESOME}/less:${CODEMIRROR}
 LESS_IN = static/less/bootstrap.less
 CSS_OUT = static/css/privatepaste.css
 
@@ -30,27 +30,22 @@ bower:
 	@( bower -s install )
 	@( mkdir -p static/js/vendor )
 	@( cp bower_components/backbone/backbone.js static/js/vendor/ )
-	@( cp bower_components/jquery/dist/jquery.min.* static/js/vendor/ )
+	@( cp bower_components/bootstrap/dist/js/bootstrap.min.js static/js/vendor/ )
+	@( cp bower_components/jquery/dist/jquery.min.js static/js/vendor/ )
 	@( cp bower_components/requirejs/require.js static/js/ )
-	@( cp bower_components/underscore/underscore-min.* static/js/vendor/ )
-
-codemirror:
-	@( mkdir -p static/css/lib static/js/vendor/codemirror )
-	@( cp $(CODEMIRROR)/lib/codemirror.css static/css/ )
-	@( cp $(CODEMIRROR)/lib/codemirror.js static/js/vendor/codemirror )
-	@( cp -r $(CODEMIRROR)/addon static/js/vendor/codemirror/ )
-	@( cp -r $(CODEMIRROR)/mode static/js/vendor/codemirror/ )
+	@( cp bower_components/underscore/underscore-min.js static/js/vendor/ )
+	@( cp -r $(CODEMIRROR) static/js/vendor/ )
 
 less:
-	@( $(LESSC) --verbose -x --source-map=${CSS_OUT}.map --include-path=${LESS_INCLUDE} ${LESS_IN} ${CSS_OUT} )
+	@( $(LESSC) --verbose --strict-imports --source-map=${CSS_OUT}.map --include-path=${LESS_INCLUDE} ${LESS_IN} ${CSS_OUT} )
 
 fonts:
 	@( mkdir -p static/fonts )
 	@( cp $(FONTAWESOME)/fonts/* static/fonts/ )
 
-static: less fonts codemirror
+static: less
 
-deps: bower
+deps: bower fonts
 	@( $(REBAR) get-deps )
 
 compile: clean
@@ -65,7 +60,7 @@ clean:
 	@( rm -f translations/gettext_server_db.dets )
 
 run:
-	@( erl +W w -pa ebin deps/*/ebin -config rel/sys.config -sname privatepaste -s privatepaste )
+	@( erl +W w -pa ebin deps/*/ebin -config rel/sys.config -sname privatepaste -sync log all -s privatepaste )
 
 release: compile
 	@( $(RELX) release )
