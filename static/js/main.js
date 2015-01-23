@@ -6,7 +6,7 @@ requirejs.config({
     jquery: 'vendor/jquery.min',
     underscore: 'vendor/underscore-min',
     codemirror: 'vendor/codemirror',
-    editor: 'app/editor'
+    editor: 'app/views/editor'
 
 
   },
@@ -26,7 +26,5 @@ requirejs.config({
 });
 require(['jquery', 'underscore', 'backbone',  'bootstrap', 'editor'],
   function($, _, Backbone, Bootstrap, Editor) {
-  console.log('initialized');
-  var editor = new Editor({el: document.getElementById('editor')});
-  editor.render();
+  var editor = new Editor({el: document.getElementById('content')});
 });

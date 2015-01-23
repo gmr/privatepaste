@@ -21,5 +21,5 @@ terminate(_Reason, _Req, _State) ->
 handle_html(Req, State) ->
     Opts = [{translation_fun, ?TRANSLATE,
             {locale, privatepaste_util:get_language(Req)}],
-    {ok, Body} = editor_dtl:render([], Opts),
+    {ok, Body} = editor_dtl:render([{modes, ?MODES}], Opts),
     {Body, Req, State}.

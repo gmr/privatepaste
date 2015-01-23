@@ -11,24 +11,11 @@
 <div class="collapse navbar-collapse" id="navbar">
   <ul class="nav navbar-nav">
     <li><a href="/"><i class="fa fa-file"></i> {{ _("New Paste") }}</a></li>
-    <li><a href="/#upload"><i class="fa fa-upload"></i> Upload</a></li>
-    <li class="authed hidden"><a href="/#pastes"><i class="fa fa-list"></i> Paste Index</a></li>
+    <li><a href="/#upload"><i class="fa fa-upload"></i> {{ _("Upload") }}</a></li>
+    <li class="authed hidden"><a href="/#pastes"><i class="fa fa-list"></i> {{ _("Paste Index") }}</a></li>
   </ul>
   <ul class="nav navbar-nav visible-xs">
-    <li><a href="/faq"><i class="fa fa-question-circle"></i> help</a></li>
-    <li><a href="/terms"><i class="fa fa-gavel"></i> Terms &amp; Conditions</a></li>
-    <!--
-    <li class="auth"><a href="#login" data-toggle="modal" data-target="#login-modal"><i class="fa fa-user"></i> Login / Register</a></li>
-    <li class="authed hidden"><a href="/logout"><i class="fa fa-sign-out"></i> logout</a></li>
-    -->
+    <li><a href="/faq"><i class="fa fa-question-circle"></i> {{ _("Help") }}</a></li>
+    <li><a href="/terms"><i class="fa fa-gavel"></i> {{ _("Terms &amp; Conditions") }}</a></li>
   </ul>
-  <!--
-  <ul class="nav navbar-nav navbar-right hidden-xs auth">
-    <li class="authed avatar hidden"><img width="30" height="30" data-bind="avatar"></li>
-    <li class="authed navbar-text hidden" data-bind="name"></li>
-    <li class="authed hidden"><a href="#preferences" data-toggle="modal" data-target="#preferences-modal" title="preferences"><i class="fa fa-wrench"></i></a></li>
-    <li class="auth"><a href="#login" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> Login / Register</a></li>
-    <li class="authed hidden"><a href="/logout" data-toggle="tooltip" data-placement="bottom" title="logout"><i class="fa fa-sign-out"></i></a></li>
-  </ul>
-  -->
 </div>
