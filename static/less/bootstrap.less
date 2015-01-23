@@ -51,10 +51,9 @@
 @import "privatepaste.less";
 
 // Codemirror
-@import "lib/codemirror/codemirror.css";
-//@import "lib/codemirror/codemirror-activeline.less";
-//@import "lib/codemirror/codemirror-foldgutter.less";
-//@import "lib/codemirror/codemirror-lint.less";
+@import (inline) "lib/codemirror.css";
+@import (inline) "addon/fold/foldgutter.css";
+@import (inline) "addon/lint/lint.css";
 
 // Utility classes
 @import "utilities.less"; // Has to be last to override when necessary

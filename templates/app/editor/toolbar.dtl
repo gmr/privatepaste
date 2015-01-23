@@ -1,4 +1,4 @@
-<div class="toolbar-panels">
+<div class="toolbar-panels hidden">
   <div class="toolbar-panel toolbar-button dropdown base64" data-toggle="tooltip" data-placement="right" title="Base64 Encode">
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Base64 <span class="caret"></span></button>
     <ul class="dropdown-menu">

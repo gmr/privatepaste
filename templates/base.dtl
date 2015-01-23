@@ -10,13 +10,14 @@
     <link rel="apple-touch-icon-precomposed" href="/static/ico/privatepaste-60.png">
     <link rel="shortcut icon" href="/static/ico/privatepaste.ico">
     <link href="/static/css/privatepaste.css" rel="stylesheet" media="screen">
+    <script data-main="/static/js/main" src="/static/js/require.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-inverse hidden-print" role="navigation">
       {% include "includes/navigation.dtl" %}
     </nav>
     <div id="content">{% block content %}Unextend Base{% endblock %}</div>
-    <div class="user"></div>
-    <footer class="hidden-print">{% include "includes/footer.dtl" %}</footer>
+    <div id="modals"></div>
+    <footer class="hidden-print hidden-xs">{% include "includes/footer.dtl" %}</footer>
   </body>
 </html>

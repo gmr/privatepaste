@@ -17,14 +17,18 @@
   <ul class="nav navbar-nav visible-xs">
     <li><a href="/faq"><i class="fa fa-question-circle"></i> help</a></li>
     <li><a href="/terms"><i class="fa fa-gavel"></i> Terms &amp; Conditions</a></li>
+    <!--
     <li class="auth"><a href="#login" data-toggle="modal" data-target="#login-modal"><i class="fa fa-user"></i> Login / Register</a></li>
     <li class="authed hidden"><a href="/logout"><i class="fa fa-sign-out"></i> logout</a></li>
+    -->
   </ul>
+  <!--
   <ul class="nav navbar-nav navbar-right hidden-xs auth">
     <li class="authed avatar hidden"><img width="30" height="30" data-bind="avatar"></li>
     <li class="authed navbar-text hidden" data-bind="name"></li>
     <li class="authed hidden"><a href="#preferences" data-toggle="modal" data-target="#preferences-modal" title="preferences"><i class="fa fa-wrench"></i></a></li>
     <li class="auth"><a href="#login" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> Login / Register</a></li>
     <li class="authed hidden"><a href="/logout" data-toggle="tooltip" data-placement="bottom" title="logout"><i class="fa fa-sign-out"></i></a></li>
- </ul>
+  </ul>
+  -->
 </div>

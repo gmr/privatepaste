@@ -1,14 +1,6 @@
 {% extends "base.dtl" %}
 {% block title %}{{ _("PrivatePaste.com") }} :: {{ _("New Paste") }}{% endblock %}
 {% block content %}
-<div id="application">
-  <div class="hidden-sm hidden-xs" id="sidebar">{% include "app/editor/sidebar.dtl" %}</div>
-  <div id="editor">
-    <div class="toolbar hidden-sm hidden-xs">{% include "app/editor/toolbar.dtl" %}</div>
-    <div class="notification"></div>
-    <div class="codemirror lint-border-default"></div>
-  </div>
-  <div class="modals"></div>
-</div>
-<div id="preferences"></div>
+<div id="sidebar" class="hidden-sm hidden-xs">{% include "app/editor/sidebar.dtl" %}</div>
+<div id="editor"></div>
 {% endblock %}
