@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PrivatePaste 2.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-22 22:39-0500\n"
+"POT-Creation-Date: 2015-01-23 01:40-0500\n"
 "PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Gavin M. Roy <gavinmroy@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,50 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: templates/app/editor/sidebar.dtl:31
+msgid "1 Day"
+msgstr "1 Day"
+
+#: templates/app/editor/sidebar.dtl:30
+msgid "1 Hour"
+msgstr "1 Hour"
+
+#: templates/app/editor/sidebar.dtl:34
+msgid "1 Month"
+msgstr "1 Month"
+
+#: templates/app/editor/sidebar.dtl:33
+msgid "1 Week"
+msgstr "1 Week"
+
+#: templates/app/editor/sidebar.dtl:37
+msgid "1 Year"
+msgstr "1 Year"
+
+#: templates/app/editor/sidebar.dtl:28
+msgid "15 Minutes"
+msgstr "15 Minutes"
+
+#: templates/app/editor/sidebar.dtl:35
+msgid "3 Months"
+msgstr "3 Months"
+
+#: templates/app/editor/sidebar.dtl:29
+msgid "30 Minutes"
+msgstr "30 Minutes"
+
+#: templates/app/editor/sidebar.dtl:32
+msgid "5 Days"
+msgstr "5 Days"
+
+#: templates/app/editor/sidebar.dtl:27
+msgid "5 Minutes"
+msgstr "5 Minutes"
+
+#: templates/app/editor/sidebar.dtl:36
+msgid "6 Months"
+msgstr "6 Months"
+
 #: templates/info.dtl:30
 msgid "Application"
 msgstr "Application"
@@ -24,6 +68,10 @@ msgstr "Application"
 #: templates/info.dtl:2 templates/info.dtl:7
 msgid "Application Report"
 msgstr "Application Report"
+
+#: templates/app/editor/sidebar.dtl:54
+msgid "Code Folding"
+msgstr "Code Folding"
 
 #: templates/info.dtl:32
 msgid "Description"
@@ -37,9 +85,17 @@ msgstr "Erlang Version"
 msgid "Error"
 msgstr "Error"
 
+#: templates/includes/navigation.dtl:17
+msgid "Help"
+msgstr "Help"
+
 #: templates/info.dtl:18
 msgid "Language"
 msgstr "Language"
+
+#: templates/app/editor/sidebar.dtl:45
+msgid "Line Numbers"
+msgstr "Line Numbers"
 
 #: templates/info.dtl:26
 msgid "Loaded Applications"
@@ -49,7 +105,7 @@ msgstr "Loaded Applications"
 msgid "Memory Utilization"
 msgstr "Memory Utilization"
 
-#: templates/app/editor.dtl:2 templates/includes/navigation.dtl:13
+#: templates/app/editor.dtl:2 templates/includes/navigation.dtl:12
 msgid "New Paste"
 msgstr "New Paste"
 
@@ -57,8 +113,26 @@ msgstr "New Paste"
 msgid "Node"
 msgstr "Node"
 
+#: templates/app/editor/sidebar.dtl:48 templates/app/editor/sidebar.dtl:57
+#: templates/app/editor/sidebar.dtl:66
+msgid "Off"
+msgstr "Off"
+
+#: templates/app/editor/sidebar.dtl:47 templates/app/editor/sidebar.dtl:56
+#: templates/app/editor/sidebar.dtl:65
+msgid "On"
+msgstr "On"
+
+#: templates/app/editor/sidebar.dtl:6
+msgid "Options"
+msgstr "Options"
+
+#: templates/includes/navigation.dtl:14
+msgid "Paste Index"
+msgstr "Paste Index"
+
 #: templates/base.dtl:4 templates/error.dtl:2 templates/app/editor.dtl:2
-#: templates/includes/navigation.dtl:9
+#: templates/includes/navigation.dtl:8
 msgid "PrivatePaste.com"
 msgstr "PrivatePaste.com"
 
@@ -70,17 +144,41 @@ msgstr "Request Headers"
 msgid "Running Processes"
 msgstr "Running Processes"
 
+#: templates/app/editor/sidebar.dtl:76
+msgid "Save"
+msgstr "Save"
+
+#: templates/app/editor/sidebar.dtl:63
+msgid "Secure Paste"
+msgstr "Secure Paste"
+
+#: templates/app/editor/sidebar.dtl:14
+msgid "Syntax"
+msgstr "Syntax"
+
 #: templates/info.dtl:16
 msgid "System Architecture"
 msgstr "System Architecture"
+
+#: templates/app/editor/sidebar.dtl:24
+msgid "TTL"
+msgstr "TTL"
 
 #: templates/includes/footer.dtl:2
 msgid "Terms & Conditions"
 msgstr "Terms & Conditions"
 
+#: templates/includes/navigation.dtl:18
+msgid "Terms &amp; Conditions"
+msgstr "Terms &amp; Conditions"
+
 #: templates/includes/navigation.dtl:3
 msgid "Toogle Navigation"
 msgstr "Toogle Navigation"
+
+#: templates/includes/navigation.dtl:13
+msgid "Upload"
+msgstr "Upload"
 
 #: templates/info.dtl:31
 msgid "Version"

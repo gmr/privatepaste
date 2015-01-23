@@ -5,8 +5,7 @@
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
   </button>
-  <a class="navbar-brand hidden-xs" data-toggle="tooltip" title="site" href="/#new"><i class="fa fa-eye"></i></a>
-  <a class="navbar-brand visible-xs" data-toggle="tooltip" title="site" href="/#new"><i class="fa fa-eye"></i> {{ _("PrivatePaste.com") }}</a>
+  <a class="navbar-brand" data-toggle="tooltip" title="site" href="/#new"><i class="fa fa-eye"></i> {{ _("PrivatePaste.com") }}</a>
 </div>
 <div class="collapse navbar-collapse" id="navbar">
   <ul class="nav navbar-nav">

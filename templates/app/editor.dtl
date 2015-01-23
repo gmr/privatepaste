@@ -1,6 +1,6 @@
 {% extends "base.dtl" %}
 {% block title %}{{ _("PrivatePaste.com") }} :: {{ _("New Paste") }}{% endblock %}
 {% block content %}
-<div id="sidebar" class="hidden-sm hidden-xs">{% include "app/editor/sidebar.dtl" %}</div>
+<div id="sidebar" class="hidden-xs">{% include "app/editor/sidebar.dtl" %}</div>
 <div id="editor"></div>
 {% endblock %}
