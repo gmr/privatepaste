@@ -62,7 +62,10 @@ on_response(Code, _Headers, _Body, Req) when is_integer(Code), Code >= 400 ->
             {locale, privatepaste_util:get_language(Req)}],
     {ok, Body} = error_dtl:render([{code, integer_to_list(Code)},
                                    {message, Message}], Opts),
-    cowboy_req:reply(Code, [{<<"Content-Type">>, <<"text/html">>}], Body, Req);
+    cowboy_req:reply(Code,
+                     [{<<"Content-Type">>, <<"text/html">>},
+                      {<<"Content-Length">>, integer_to_list(byte_size(list_to_binary(Body)))}], 
+                      Body, Req);
 
 on_response(Code, _Headers, _Body, Req) ->
     lager:log(info, self(), "~p ~s ~s", [Code, cowboy_req:method(Req), cowboy_req:path(Req)]),
