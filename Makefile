@@ -35,20 +35,17 @@ bower:
 	@( cp bower_components/requirejs/require.js static/js/ )
 	@( cp bower_components/underscore/underscore-min.js static/js/vendor/ )
 	@( cp -r $(CODEMIRROR) static/js/vendor/ )
-
+	@( mkdir -p static/fonts )
+	@( cp $(FONTAWESOME)/fonts/* static/fonts/ )
 less:
 	@( $(LESSC) --verbose --strict-imports --source-map=${CSS_OUT}.map --include-path=${LESS_INCLUDE} ${LESS_IN} ${CSS_OUT} )
 
-fonts:
-	@( mkdir -p static/fonts )
-	@( cp $(FONTAWESOME)/fonts/* static/fonts/ )
-
 static: less
 
-deps: bower fonts
+deps: bower
 	@( $(REBAR) get-deps )
 
-compile: clean
+compile:
 	@( $(REBAR) compile )
 
 clean:
