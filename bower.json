@@ -16,7 +16,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.0",
-    "codemirror": "~4.7.0",
+    "codemirror": "~4.12.0",
     "font-awesome": "~4.2.0",
     "jquery": "~2.1.1",
     "requirejs": "~2.1.15",
