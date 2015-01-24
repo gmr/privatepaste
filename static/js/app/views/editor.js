@@ -19,7 +19,8 @@ function(Backbone, Paste, CodeMirror) {
       'change input[name="line_numbers"]': 'onLineNumToggle',
       'change input[name="secure-paste"]': 'onSecurePasteChange',
       'change #ttl':                       'onTTLChange',
-      'change #syntax':                    'onSyntaxChange'
+      'change #syntax':                    'onSyntaxChange',
+      'click #save':                       'savePaste'
     },
 
     syntax: {
@@ -98,6 +99,10 @@ function(Backbone, Paste, CodeMirror) {
         this.saveButton.addClass('disabled');
       }
       return this;
+    },
+
+    savePaste: function() {
+        this.model.save();
     },
 
     changeSyntax: function(syntax, syntaxName) {
