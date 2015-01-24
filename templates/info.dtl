@@ -4,7 +4,7 @@
 <div class="container" id="info">
   <br>
   <div class="panel panel-default">
-    <div class="panel-heading">{{ _("Application Report") }}</div>
+    <div class="panel-heading"><strong class="text-primary">{{ _("Application Report") }}</strong></div>
     <div class="panel-body">
       <dl class="dl-horizontal">
         <dt>{{ _("Node") }}</dt>
@@ -23,13 +23,13 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="panel panel-default">
-        <div class="panel-heading">{{ _("Loaded Applications") }}</div>
+        <div class="panel-heading"><strong class="text-primary">{{ _("Loaded Applications") }}</strong></div>
         <table class="table table-hover table-striped table-bordered">
           <thead>
             <tr>
               <th>{{ _("Application") }}</th>
               <th>{{ _("Version") }}</th>
-              <th>{{ _("Description") }}</th>
+              <th class="text-center">{{ _("Description") }}</th>
             </tr>
           </thead>
           <tbody>
@@ -46,10 +46,37 @@
     </div>
     <div class="col-sm-6">
       <div class="panel panel-default">
-        <div class="panel-heading">{{ _("Memory Utilization") }}</div>
+        <div class="panel-heading"><strong class="text-primary">{{ _("Memory Utilization") }}</strong></div>
         <table class="table table-hover table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>{{ _("Key") }}</th>
+              <th class="text-right">{{ _("Bytes") }}</th>
+            </tr>
+          </thead>
           <tbody>
           {% for row in memory %}{% for key, value in row %}
+            <tr>
+              <td><strong>{{ key }}</strong></td>
+              <td class="text-right">{{ value }}</td>
+            </tr>
+          {% endfor %}{% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong class="text-primary">{{ _("Mnesia Statistics") }}</strong>
+        </div>
+        <table class="table table-hover table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>{{ _("Key") }}</th>
+              <th class="text-right">{{ _("Count") }}</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for row in mnesia %}{% for key, value in row %}
             <tr>
               <td><strong>{{ key }}</strong></td>
               <td class="text-right">{{ value }}</td>
@@ -61,7 +88,7 @@
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading">{{ _("Request Headers") }}</div>
+    <div class="panel-heading"><strong class="text-primary">{{ _("Request Headers") }}</strong></div>
     <table class="table table-hover table-striped table-bordered">
       <tbody>
       {% for row in headers %}{% for key, value in row %}
