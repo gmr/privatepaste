@@ -2,17 +2,19 @@ define(['backbone'], function(Backbone) {
   return Backbone.Model.extend({
     urlRoot: '/paste',
     defaults: {
-      "id": null,
-      "syntax": 'none',
-      "ttl": 432000,
-      "password": null,
-      "line_numbers": true,
-      "code_folding": true,
-      "views": 0,
-      "revision": 0,
-      "created_at": parseInt(new Date().getTime()/1000),
-      "last_updated_at": null,
-      "content": ''
+      'hostname': location.hostname,
+      'id': null,
+      'owner': null,
+      'created_at': parseInt(new Date().getTime()/1000),
+      'updated_at': null,
+      'revision': 0,
+      'ttl': 432000,
+      'password': null,
+      'views': 0,
+      'syntax': 'none',
+      'line_numbers': true,
+      'code_folding': true,
+      'content': ''
     },
 
     /**
