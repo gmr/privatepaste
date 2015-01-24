@@ -40,7 +40,8 @@ data(Req, JSON) ->
      {node, erlang:node()},
      {system_version, list_to_binary(erlang:system_info(system_version))},
      {proc_count, erlang:system_info(process_count)},
-     {architecture, list_to_binary(erlang:system_info(system_architecture))}].
+     {architecture, list_to_binary(erlang:system_info(system_architecture))},
+     {mnesia, {[{list_to_binary(atom_to_list(K)), V} || {K, V} <- gen_server:call(privatepaste_db, stats)]}}].
 
 maybe_escape_keys(Headers, JSON) when JSON =:= true ->
     [{re:replace(K, "-", "_", [{return,binary}]), V} || {K, V} <- Headers];

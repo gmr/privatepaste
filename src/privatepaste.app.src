@@ -9,6 +9,7 @@
      lager,
      cowboy,
      jiffy,
+     json_rec,
      gettext,
      erlydtl
     ]},
