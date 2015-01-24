@@ -1,6 +1,20 @@
 
 -record(state, {languages}).
 
+-record(paste, {id :: string(),
+                hostname :: string(),
+                owner :: string(),
+                created_at :: string(),
+                updated_at :: string(),
+                revision :: integer(),
+                ttl :: integer(),
+                password :: string(),
+                views :: integer(),
+                syntax :: string(),
+                line_numbers :: atom(),
+                code_folding :: atom(),
+                content :: string()}).
+
 -define(DEFAULT_LANGUAGE, "en").
 
 -define(MIME_TYPE_HTML, <<"text/html">>).
@@ -92,5 +106,5 @@
                 {<<"xquery">>, <<"XQuery">>},
                 {<<"yaml">>, <<"YAML">>},
                 {<<"z80">>, <<"z80">>}]).
-                
+
 -define(TRANSLATE, fun(Key, Locale) -> gettext:key2str(Key, Locale) end}).
