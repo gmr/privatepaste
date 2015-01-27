@@ -27,6 +27,14 @@ start_link() ->
 %% ------------------------------------------------------------------
 
 init([]) ->
+    random:seed(erlang:now()),
+    mnesia:create_schema([node()]),
+    mnesia:start(),
+    mnesia:create_table(pastes, [{attributes, record_info(fields, paste)},
+                                 {disc_copies, [node()]},
+                                 {record_name, paste},
+                                 {type, bag}]),
+
     Dispatch = cowboy_router:compile(privatepaste_routes:get()),
     cowboy:start_http(privatepaste_cowboy_listener,
                       listener_count(),
@@ -56,6 +64,9 @@ code_change(_OldVsn, State, _Extra) ->
 %% ------------------------------------------------------------------
 
 on_response(Code, _Headers, _Body, Req) when is_integer(Code), Code >= 400 ->
+
+    %% Need to maek this conditional on content-type
+
     lager:log(info, self(), "~p ~s ~s", [Code, cowboy_req:method(Req), cowboy_req:path(Req)]),
     Message = proplists:get_value(Code, ?STATUS_CODES, <<"Undefined Error Code">>),
     Opts = [{translation_fun, ?TRANSLATE,
@@ -64,7 +75,7 @@ on_response(Code, _Headers, _Body, Req) when is_integer(Code), Code >= 400 ->
                                    {message, Message}], Opts),
     cowboy_req:reply(Code,
                      [{<<"Content-Type">>, <<"text/html">>},
-                      {<<"Content-Length">>, integer_to_list(byte_size(list_to_binary(Body)))}], 
+                      {<<"Content-Length">>, integer_to_list(byte_size(list_to_binary(Body)))}],
                       Body, Req);
 
 on_response(Code, _Headers, _Body, Req) ->
@@ -72,10 +83,10 @@ on_response(Code, _Headers, _Body, Req) ->
     Req.
 
 listener_count() ->
-    privatepaste_util:get_int_value("HTTP_LISTENER_COUNT", http_listener_count).
+    privatepaste_util:get_int_from_env("HTTP_LISTENER_COUNT", http_listener_count).
 
 port() ->
-    privatepaste_util:get_int_value("HTTP_PORT", http_port).
+    privatepaste_util:get_int_from_env("HTTP_PORT", http_port).
 
 timeout() ->
-    privatepaste_util:get_int_value("HTTP_TIMEOUT", http_timeout).
+    privatepaste_util:get_int_from_env("HTTP_TIMEOUT", http_timeout).

@@ -1,0 +1,7 @@
+{% extends "base.dtl" %}
+{% block title %}{{ _("PrivatePaste.com") }} :: {{ paste.id }}{% endblock %}
+{% block body %}view{% endblock %}
+{% block content %}
+<div id="sidebar" class="hidden-xs">{% include "app/view/sidebar.dtl" %}</div>
+<div id="editor" data-line-numbers="{{ paste.line_numbers }}"><textarea class="hidden" id="paste-content">{{ paste.content }}</textarea></div>
+{% endblock %}

@@ -1,0 +1,55 @@
+<div class="panel-group" id="sidebar-accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#sidebar-accordion" href="#info">
+          {{ _("Info") }}
+          <i class="pull-right fa fa-list-alt"></i>
+        </a>
+      </h4>
+    </div>
+    <div id="info" class="panel-collapse">
+      <div class="panel-body">
+        <dl class="info dl-horizontal">
+          <dt>{{ _("ID") }}</dt>
+          <dd><a href="/paste/{{ paste.id }}"> <i class="fa fa-external-link"></i> {{ paste.id }}</a></dd>
+          <dt>{{ _("TTL") }}</dt>
+          <dd>{{ paste.ttl }}</dd>
+          <dt>{{ _("Created At") }}</dt>
+          <dd>{{ paste.created_at }}</dd>
+          <dt>{{ _("Updated At") }}</dt>
+          <dd>{{ paste.updated_at }}</dd>
+          <dt>{{ _("Revision") }}</dt>
+          <dd>{{ paste.revision }}</dd>
+          <dt>{{ _("Syntax") }}</dt>
+          <dd id="paste-syntax">{{ paste.syntax }}</dd>
+          <dt>{{ _("Views") }}</dt>
+          <dd>{{ paste.views }}</dd>
+          <dt>{{ _("Lines") }}</dt>
+          <dd>0</dd>
+          <dt>{{ _("Secure Paste") }}</dt>
+          <dd data-bind="secure_dd"><i data-bind="secure_icon"></i> <span data-bind="secure_text"></span></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#sidebar-accordion" href="#problem">{{ _("Report Paste") }} <i class="pull-right fa fa-warning"></i></a>
+      </h4>
+    </div>
+    <div id="problem" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>{{ _("ReportInformation") }}<p>
+        <p class="text-center"><button class="btn btn-warning"> {{ _("Remove") }}</button> or <button class="btn btn-default"> {{ _("Report") }}</button></p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <a data-target="copy" href="/#copy/" class="btn btn-primary btn-sidebar copy">{{ _("Copy") }} <i class="pull-right fa fa-code-fork"></i></a>
+  </div>
+  <div class="panel panel-default">
+    <a class="btn btn-info btn-sidebar download">{{ _("Download") }} <i class="pull-right fa fa-download"></i></a>
+  </div>
+</div>

@@ -15,8 +15,7 @@ get() ->
             [
                 {"/",     privatepaste_home, []},
                 {"/info", privatepaste_info, []},
-                {"/paste", privatepaste_paste, []},
-                {"/paste/[...]", privatepaste_paste, []},
+                {"/paste/[:paste_id]", privatepaste_paste, []},
                 {"/static/[...]", cowboy_static,
                  {dir, [<<"static">>], [{mimetypes, cow_mimetypes, all},
                                         {dir_handler, directory_handler}]}

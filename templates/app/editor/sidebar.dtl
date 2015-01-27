@@ -51,15 +51,6 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="code_folding">{{ _("Code Folding") }} <sup><i class="fa fa-question-circle"></i></sup></label><br />
-                <div class="btn-group" data-toggle="buttons">
-                  <label class="btn btn-default active"><input type="radio" name="code_folding" value="on" checked> {{ _("On") }}</label>
-                  <label class="btn btn-default"><input type="radio" name="code_folding" value="off"> {{ _("Off") }}</label>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
                 <label for="secure-paste">{{ _("Secure Paste") }} <sup><i class="fa fa-question-circle"></i></sup></label><br />
                 <div class="btn-group" data-toggle="buttons" id="password-btn-group">
                   <label class="btn btn-default"><input type="radio" value="on" name="secure-paste"> {{ _("On") }}</label>

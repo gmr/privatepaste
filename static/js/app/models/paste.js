@@ -1,11 +1,11 @@
-define(['backbone'], function(Backbone) {
+define(['backbone', 'moment'], function(Backbone, moment) {
   return Backbone.Model.extend({
     urlRoot: '/paste',
     defaults: {
       'hostname': location.hostname,
       'id': null,
       'owner': null,
-      'created_at': parseInt(new Date().getTime()/1000),
+      'created_at': moment().format(),
       'updated_at': null,
       'revision': 0,
       'ttl': 432000,
@@ -13,7 +13,6 @@ define(['backbone'], function(Backbone) {
       'views': 0,
       'syntax': 'none',
       'line_numbers': true,
-      'code_folding': true,
       'content': ''
     },
 

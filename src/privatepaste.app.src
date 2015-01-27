@@ -8,8 +8,7 @@
      stdlib,
      lager,
      cowboy,
-     jiffy,
-     json_rec,
+     jsx,
      gettext,
      erlydtl
     ]},

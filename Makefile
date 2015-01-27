@@ -34,6 +34,7 @@ bower:
 	@( cp bower_components/jquery/dist/jquery.min.js static/js/vendor/ )
 	@( cp bower_components/requirejs/require.js static/js/ )
 	@( cp bower_components/underscore/underscore-min.js static/js/vendor/ )
+	@( cp bower_components/moment/min/moment.min.js static/js/vendor/ )
 	@( cp -r $(CODEMIRROR) static/js/vendor/ )
 	@( mkdir -p static/fonts )
 	@( cp $(FONTAWESOME)/fonts/* static/fonts/ )

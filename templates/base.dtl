@@ -12,7 +12,7 @@
     <link href="/static/css/privatepaste.css" rel="stylesheet" media="screen">
     <script data-main="/static/js/main" src="/static/js/require.js"></script>
   </head>
-  <body>
+  <body data-bind="{% block body %}default{% endblock %}">
     <nav class="navbar navbar-default navbar-fixed-top navbar-inverse hidden-print" role="navigation">
       {% include "includes/navigation.dtl" %}
     </nav>

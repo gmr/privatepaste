@@ -12,7 +12,6 @@
                 views :: integer(),
                 syntax :: string(),
                 line_numbers :: atom(),
-                code_folding :: atom(),
                 content :: string()}).
 
 -define(DEFAULT_LANGUAGE, "en").

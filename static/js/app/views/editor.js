@@ -1,21 +1,12 @@
 define(['backbone',
         'app/models/paste',
         'codemirror/lib/codemirror',
-        'codemirror/addon/selection/active-line',
-        'codemirror/addon/fold/foldcode',
-        'codemirror/addon/fold/foldgutter',
-        'codemirror/addon/fold/brace-fold',
-        'codemirror/addon/fold/comment-fold',
-        'codemirror/addon/fold/indent-fold',
-        'codemirror/addon/fold/markdown-fold',
-        'codemirror/addon/fold/xml-fold',
-        'codemirror/addon/mode/loadmode'],
+        'codemirror/addon/selection/active-line'],
 function(Backbone, Paste, CodeMirror) {
 
   return Backbone.View.extend({
 
     events: {
-      'change input[name="code_folding"]': 'onCodeFoldingToggle',
       'change input[name="line_numbers"]': 'onLineNumToggle',
       'change input[name="secure-paste"]': 'onSecurePasteChange',
       'change #ttl':                       'onTTLChange',
@@ -90,7 +81,6 @@ function(Backbone, Paste, CodeMirror) {
       var syntax = this.model.get('syntax');
       var syntaxName = this.syntax[syntax] !== undefined ? this.syntax[syntax].name : syntax;
       if (this.cm.getOption('mode') != syntaxName) this.changeSyntax(syntax, syntaxName);
-      this.setGutters();
       if (this.model.get('content').length > 10) {
         console.log('enabled button');
         this.saveButton.removeClass('disabled');
@@ -120,29 +110,10 @@ function(Backbone, Paste, CodeMirror) {
       }
     },
 
-    foldCode: function() {
-      var fold;
-      var syntax = this.model.get('syntax');
-      var indentFold = ['erlang', 'python', 'ruby', 'yaml']
-      if (indentFold.indexOf(syntax) > -1) {
-        fold = new CodeMirror.fold.combine(CodeMirror.fold.comment, CodeMirror.fold.indent);
-      } else if (this.syntax == 'xml' || this.syntax == 'htmlmixed') {
-        fold = new CodeMirror.fold.combine(CodeMirror.fold.comment, CodeMirror.fold.xml);
-      } else {
-        fold = new CodeMirror.fold.combine(CodeMirror.fold.comment, CodeMirror.fold.brace);
-      }
-      this.cm.setOption('foldGutter', {rangeFinder: fold, scanUp: true});
-
-    },
-
     getSyntaxName: function(syntax) {
       if (this.syntax[syntax] !== undefined)
         return this.syntax[syntax].name
       return syntax;
-    },
-
-    onCodeFoldingToggle: function(event) {
-      this.model.set('code_folding', event.target.value == 'on' ? true : false);
     },
 
     onLineNumToggle: function(event) {
@@ -155,38 +126,6 @@ function(Backbone, Paste, CodeMirror) {
 
     onTTLChange: function(event) {
       this.model.set('ttl', event.target.value);
-    },
-
-    setGutters: function(model) {
-      var gutters = [];
-      if (this.model.get('line_numbers') === true) {
-        gutters.push('CodeMirror-linenumbers');
-      }
-      this.cm.setOption('lineNumbers', this.model.get('line_numbers'));
-      if (this.model.get('code_folding') === true)
-      {
-        gutters.push('CodeMirror-foldgutter');
-        this.foldCode();
-      } else {
-        this.unfoldCode();
-      }
-      this.cm.setOption('gutters', gutters);
-    },
-
-    unfoldCode: function() {
-
-      // Turn off code folding in the gutter
-      this.cm.setOption('foldGutter', false);
-
-      // Get all the marks in the document and if they're a code folding mark, remove it
-      var marks = this.cm.getDoc().getAllMarks();
-      for (var offset = 0; offset < marks.length; offset++)
-      {
-        if (marks[offset].__isFold) marks[offset].clear();
-      }
-
-      // Remove the markers from the gutter
-      this.cm.clearGutter('CodeMirror-foldgutter');
     }
 
   });
