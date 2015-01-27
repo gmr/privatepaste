@@ -6,18 +6,21 @@ function(Backbone, CodeMirror) {
   return Backbone.View.extend({
 
       initialize: function(){
-          var lineNumbers = document.getElementById('editor').getAttribute('data-line-numbers') === 'true';
-          var syntax = document.getElementById('paste-syntax').innerText;
           var self = this;
-          require(['codemirror/mode/' + syntax + '/' + syntax], function(_mode){
-            self.cm.setOption('mode', syntax);
-          });
+          var lineNumbers = document.getElementById('editor').getAttribute('data-line-numbers') === 'true';
+          var syntax = document.getElementById('paste-syntax').getAttribute('data-value');
           this.cm = CodeMirror.fromTextArea(document.getElementById('paste-content'),
                                             {autofocus: true,
                                              lineNumbers: lineNumbers,
                                              readOnly: true,
                                              styleActiveLine: true});
           this.cm.setSize('auto', '100%');
+          if (syntax != 'mode') {
+              require(['codemirror/mode/' + syntax + '/' + syntax],
+                      _.bind(function(_mode) {
+                        this.cm.setOption('mode', syntax);
+                    }, this));
+          }
       }
   });
 });

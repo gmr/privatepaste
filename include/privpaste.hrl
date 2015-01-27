@@ -16,8 +16,13 @@
 
 -define(DEFAULT_LANGUAGE, "en").
 
+-define(ERROR,        <<"error">>).
+
+-define(CONTENT_TYPE, <<"content-type">>).
 -define(MIME_TYPE_HTML, <<"text/html">>).
 -define(MIME_TYPE_JSON, <<"application/json">>).
+-define(CONTENT_TYPE_HTML, {?CONTENT_TYPE, ?MIME_TYPE_HTML}).
+-define(CONTENT_TYPE_JSON, {?CONTENT_TYPE, ?MIME_TYPE_JSON}).
 
 -define(STATUS_CODES, [{400, <<"Bad Request">>},
                        {401, <<"Unauthorized">>},
@@ -105,5 +110,20 @@
                 {<<"xquery">>, <<"XQuery">>},
                 {<<"yaml">>, <<"YAML">>},
                 {<<"z80">>, <<"z80">>}]).
+
+-define(TTLS, [{360, <<"5 Minutes">>},
+               {900, <<"15 Minutes">>},
+               {1800, <<"30 Minutes">>},
+               {3600, <<"1 Hour">>},
+               {86400, <<"1 Day">>},
+               {432000, <<"5 Days">>},
+               {604800, <<"1 Week">>},
+               {2592000, <<"1 Month">>},
+               {7776000, <<"3 Months">>},
+               {15552000, <<"6 Months">>},
+               {31536000, <<"1 Year">>}]).
+-define(TTL_DEFAULT, 432000).
+-define(TTL_MAX, 31536000).
+
 
 -define(TRANSLATE, fun(Key, Locale) -> gettext:key2str(Key, Locale) end}).

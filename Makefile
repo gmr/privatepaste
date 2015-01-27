@@ -58,7 +58,7 @@ clean:
 	@( rm -f translations/gettext_server_db.dets )
 
 run:
-	@( erl +W w -pa ebin deps/*/ebin -config rel/sys.config -sname privatepaste -sync log all -s privatepaste )
+	@( erl +W w -pa ebin deps/*/ebin -config rel/sys.config -sname privatepaste -sync log all -s privpaste )
 
 release: compile
 	@( $(RELX) release )

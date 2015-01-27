@@ -1,11 +1,11 @@
--module(privatepaste_home).
+-module(privpaste_edit).
 
 -export([init/2,
          content_types_provided/2,
          handle_html/2,
          terminate/3]).
 
--include("privatepaste.hrl").
+-include("privpaste.hrl").
 
 init(Req, Opts) ->
   {cowboy_rest, Req, Opts}.
@@ -20,6 +20,6 @@ terminate(_Reason, _Req, _State) ->
 
 handle_html(Req, State) ->
     Opts = [{translation_fun, ?TRANSLATE,
-            {locale, privatepaste_util:get_language(Req)}],
+            {locale, privpaste_util:get_language(Req)}],
     {ok, Body} = editor_dtl:render([{modes, ?MODES}], Opts),
     {Body, Req, State}.

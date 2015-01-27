@@ -1,8 +1,9 @@
 define(['backbone',
+        'underscore',
         'app/models/paste',
         'codemirror/lib/codemirror',
         'codemirror/addon/selection/active-line'],
-function(Backbone, Paste, CodeMirror) {
+function(Backbone, _, Paste, CodeMirror) {
 
   return Backbone.View.extend({
 
@@ -59,6 +60,7 @@ function(Backbone, Paste, CodeMirror) {
 
     initialize: function(){
       this.saveButton = this.$el.find('#save');
+      this.redirect = this.$el.find('#redirect');
       this.model = new Paste();
       this.model.on('change', this.render, this);
       this.cm = CodeMirror(document.getElementById('editor'),
@@ -68,12 +70,11 @@ function(Backbone, Paste, CodeMirror) {
                             matchBrackets: true,
                             styleActiveLine: true});
       this.cm.setSize('auto', '100%');
-      var self = this;
-      this.cm.on('change', function(editor, changes){
-        if (!editor.isClean()) {
-          self.model.set('content', editor.getValue());
-        }
-      });
+      this.cm.on('change', _.bind(function(editor, changes){
+          if (!editor.isClean()) {
+              this.model.set('content', editor.getValue());
+          }
+      }, this));
       this.render();
     },
 
@@ -82,31 +83,39 @@ function(Backbone, Paste, CodeMirror) {
       var syntaxName = this.syntax[syntax] !== undefined ? this.syntax[syntax].name : syntax;
       if (this.cm.getOption('mode') != syntaxName) this.changeSyntax(syntax, syntaxName);
       if (this.model.get('content').length > 10) {
-        console.log('enabled button');
-        this.saveButton.removeClass('disabled');
+          this.saveButton.removeClass('disabled');
       } else {
-        console.log('disabled button');
-        this.saveButton.addClass('disabled');
+          this.saveButton.addClass('disabled');
       }
       return this;
     },
 
     savePaste: function() {
-        this.model.save();
+        console.log('Saving paste');
+        this.model.save(null, {
+            error: function(model, response, options) {
+                console.log("Error saving model", response);
+            },
+            success: function(model, response, options){
+                //window.location.pathname = '/' + model.get('id');
+                console.log('Saved');
+            }
+        });
     },
 
     changeSyntax: function(syntax, syntaxName) {
-      var self = this;
       if (syntax === 'none') {
         this.cm.setOption('mode', null);
       } else if (syntax !== syntaxName) {
-        require(['codemirror/mode/' + syntaxName + '/' + syntaxName], function(_mode){
-          self.cm.setOption('mode', self.syntax[syntax]);
-        });
+        require(['codemirror/mode/' + syntaxName + '/' + syntaxName],
+                _.bind(function(_mode) {
+                    this.cm.setOption('mode', this.syntax[syntax]);
+                }, this));
       } else if (syntax != 'none') {
-        require(['codemirror/mode/' + syntax + '/' + syntax], function(_mode){
-          self.cm.setOption('mode', syntax);
-        });
+        require(['codemirror/mode/' + syntax + '/' + syntax],
+                _.bind(function(_mode) {
+                    this.cm.setOption('mode', syntax);
+                }, this));
       }
     },
 

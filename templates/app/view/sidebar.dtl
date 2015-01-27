@@ -1,3 +1,4 @@
+{% load humanize %}
 <div class="panel-group" id="sidebar-accordion">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -12,21 +13,23 @@
       <div class="panel-body">
         <dl class="info dl-horizontal">
           <dt>{{ _("ID") }}</dt>
-          <dd><a href="/paste/{{ paste.id }}"> <i class="fa fa-external-link"></i> {{ paste.id }}</a></dd>
+          <dd><a href="/{{ paste.id }}"> <i class="fa fa-external-link"></i> {{ paste.id }}</a></dd>
           <dt>{{ _("TTL") }}</dt>
-          <dd>{{ paste.ttl }}</dd>
-          <dt>{{ _("Created At") }}</dt>
-          <dd>{{ paste.created_at }}</dd>
-          <dt>{{ _("Updated At") }}</dt>
-          <dd>{{ paste.updated_at }}</dd>
+          <dd>{{ ttl }}</dd>
+          <dt>{{ _("Created") }}</dt>
+          <dd id="paste-created">{{ paste.created_at }}</dd>
+          {% if paste.updated_at != "null" %}
+          <dt>{{ _("Updated") }}</dt>
+          <dd id="paste-updated">{{ paste.updated_at }}</dd>
           <dt>{{ _("Revision") }}</dt>
-          <dd>{{ paste.revision }}</dd>
+          <dd>{{ paste.revision|intcomma }}</dd>
+          {% endif %}
           <dt>{{ _("Syntax") }}</dt>
-          <dd id="paste-syntax">{{ paste.syntax }}</dd>
+          <dd id="paste-syntax" data-value="{{paste.syntax}}">{{ syntax }}</dd>
           <dt>{{ _("Views") }}</dt>
-          <dd>{{ paste.views }}</dd>
+          <dd>{{ paste.views|intcomma }}</dd>
           <dt>{{ _("Lines") }}</dt>
-          <dd>0</dd>
+          <dd>{{ line_count|intcomma }}</dd>
           <dt>{{ _("Secure Paste") }}</dt>
           <dd data-bind="secure_dd"><i data-bind="secure_icon"></i> <span data-bind="secure_text"></span></dd>
         </dl>

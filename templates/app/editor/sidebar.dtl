@@ -24,17 +24,9 @@
             <label class="col-sm-4 control-label" for="ttl">{{ _("TTL") }}</label>
             <div class="col-sm-6">
               <select class="form-control" id="ttl">
-                <option value="360">{{ _("5 Minutes") }}</option>
-                <option value="900">{{ _("15 Minutes") }}</option>
-                <option value="1800">{{ _("30 Minutes") }}</option>
-                <option value="3600">{{ _("1 Hour") }}</option>
-                <option value="86400">{{ _("1 Day") }}</option>
-                <option value="432000" selected="selected">{{ _("5 Days") }}</option>
-                <option value="604800">{{ _("1 Week") }}</option>
-                <option value="2592000">{{ _("1 Month") }}</option>
-                <option value="7776000">{{ _("3 Months") }}</option>
-                <option value="15552000">{{ _("6 Months") }}</option>
-                <option value="31536000">{{ _("1 Year") }}</option>
+                {% for id, ttl in ttls %}
+                <option value="{{ id }}">{{ ttl }}</option>
+                {% endfor %}
               </select>
             </div>
           </div>

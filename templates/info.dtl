@@ -1,4 +1,5 @@
 {% extends "base.dtl" %}
+{% load humanize %}
 {% block title %}{{ _("Application Report") }}{% endblock %}
 {% block content %}
 <div class="container" id="info">
@@ -12,7 +13,7 @@
         <dt>{{ _("Erlang Version") }}</dt>
         <dd><code>{{ system_version }}</code></dd>
         <dt>{{ _("Running Processes") }}</dt>
-        <dd>{{ proc_count }}</dd>
+        <dd>{{ proc_count|intcomma }}</dd>
         <dt>{{ _("System Architecture") }}</dt>
         <dd><code>{{ architecture }}</code></dd>
         <dt>{{ _("Language") }}</dt>
@@ -58,7 +59,7 @@
           {% for row in memory %}{% for key, value in row %}
             <tr>
               <td><strong>{{ key }}</strong></td>
-              <td class="text-right">{{ value }}</td>
+              <td class="text-right">{{ value|intcomma }}</td>
             </tr>
           {% endfor %}{% endfor %}
           </tbody>
@@ -79,7 +80,7 @@
           {% for row in mnesia %}{% for key, value in row %}
             <tr>
               <td><strong>{{ key }}</strong></td>
-              <td class="text-right">{{ value }}</td>
+              <td class="text-right">{{ value|intcomma }}</td>
             </tr>
           {% endfor %}{% endfor %}
           </tbody>

@@ -1,7 +1,7 @@
 %% ------------------------------------------------------------------
 %% Cowboy Listener
 %% ------------------------------------------------------------------
--module(privatepaste_listener).
+-module(privpaste_listener).
 
 -behaviour(gen_server).
 
@@ -13,7 +13,7 @@
          terminate/2,
          code_change/3]).
 
--include("privatepaste.hrl").
+-include("privpaste.hrl").
 
 %% ------------------------------------------------------------------
 %% API Function Definitions
@@ -27,16 +27,8 @@ start_link() ->
 %% ------------------------------------------------------------------
 
 init([]) ->
-    random:seed(erlang:now()),
-    mnesia:create_schema([node()]),
-    mnesia:start(),
-    mnesia:create_table(pastes, [{attributes, record_info(fields, paste)},
-                                 {disc_copies, [node()]},
-                                 {record_name, paste},
-                                 {type, bag}]),
-
-    Dispatch = cowboy_router:compile(privatepaste_routes:get()),
-    cowboy:start_http(privatepaste_cowboy_listener,
+    Dispatch = cowboy_router:compile(privpaste_routes:get()),
+    cowboy:start_http(privpaste_cowboy_listener,
                       listener_count(),
                       [{port, port()}],
                       [{env, [{dispatch, Dispatch}]},
@@ -54,7 +46,7 @@ handle_info(_Info, State) ->
     {noreply, State}.
 
 terminate(_Reason, _State) ->
-    cowboy:stop_listener(privatepaste_cowboy_listener).
+    cowboy:stop_listener(privpaste_cowboy_listener).
 
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
@@ -70,7 +62,7 @@ on_response(Code, _Headers, _Body, Req) when is_integer(Code), Code >= 400 ->
     lager:log(info, self(), "~p ~s ~s", [Code, cowboy_req:method(Req), cowboy_req:path(Req)]),
     Message = proplists:get_value(Code, ?STATUS_CODES, <<"Undefined Error Code">>),
     Opts = [{translation_fun, ?TRANSLATE,
-            {locale, privatepaste_util:get_language(Req)}],
+            {locale, privpaste_util:get_language(Req)}],
     {ok, Body} = error_dtl:render([{code, integer_to_list(Code)},
                                    {message, Message}], Opts),
     cowboy_req:reply(Code,
@@ -83,10 +75,10 @@ on_response(Code, _Headers, _Body, Req) ->
     Req.
 
 listener_count() ->
-    privatepaste_util:get_int_from_env("HTTP_LISTENER_COUNT", http_listener_count).
+    privpaste_util:get_int_from_env("HTTP_LISTENER_COUNT", http_listener_count).
 
 port() ->
-    privatepaste_util:get_int_from_env("HTTP_PORT", http_port).
+    privpaste_util:get_int_from_env("HTTP_PORT", http_port).
 
 timeout() ->
-    privatepaste_util:get_int_from_env("HTTP_TIMEOUT", http_timeout).
+    privpaste_util:get_int_from_env("HTTP_TIMEOUT", http_timeout).

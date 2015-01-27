@@ -1,4 +1,4 @@
--module(privatepaste_info).
+-module(privpaste_info).
 
 -export([init/2,
          content_types_provided/2,
@@ -6,7 +6,7 @@
          handle_json/2,
          terminate/3]).
 
--include("privatepaste.hrl").
+-include("privpaste.hrl").
 
 init(Req, Opts) ->
 	{cowboy_rest, Req, Opts}.
@@ -22,7 +22,7 @@ terminate(_Reason, _Req, _State) ->
 
 handle_html(Req, State) ->
     Opts = [{translation_fun, ?TRANSLATE,
-            {locale, privatepaste_util:get_language(Req)}],
+            {locale, privpaste_util:get_language(Req)}],
     {ok, Body} = info_dtl:render(data(Req, false), Opts),
     {Body, Req, State}.
 
@@ -35,7 +35,7 @@ data(Req, JSON) ->
               list_to_binary(D),
               list_to_binary(V)] || {A, D, V} <- application:loaded_applications()]},
      {memory, {[{list_to_binary(atom_to_list(K)), V} || {K, V} <- erlang:memory()]}},
-     {language, privatepaste_util:get_language(Req)},
+     {language, privpaste_util:get_language(Req)},
      {languages, [list_to_binary(L) || L <- gettext:all_lcs()]},
      {node, erlang:node()},
      {system_version, list_to_binary(erlang:system_info(system_version))},

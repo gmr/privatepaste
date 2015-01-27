@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PrivatePaste 2.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-27 01:11-0500\n"
+"POT-Creation-Date: 2015-01-27 18:18-0500\n"
 "PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Gavin M. Roy <gavinmroy@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,83 +17,43 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/app/editor/sidebar.dtl:31
-msgid "1 Day"
-msgstr "1 Day"
-
-#: templates/app/editor/sidebar.dtl:30
-msgid "1 Hour"
-msgstr "1 Hour"
-
-#: templates/app/editor/sidebar.dtl:34
-msgid "1 Month"
-msgstr "1 Month"
-
-#: templates/app/editor/sidebar.dtl:33
-msgid "1 Week"
-msgstr "1 Week"
-
-#: templates/app/editor/sidebar.dtl:37
-msgid "1 Year"
-msgstr "1 Year"
-
-#: templates/app/editor/sidebar.dtl:28
-msgid "15 Minutes"
-msgstr "15 Minutes"
-
-#: templates/app/editor/sidebar.dtl:35
-msgid "3 Months"
-msgstr "3 Months"
-
-#: templates/app/editor/sidebar.dtl:29
-msgid "30 Minutes"
-msgstr "30 Minutes"
-
-#: templates/app/editor/sidebar.dtl:32
-msgid "5 Days"
-msgstr "5 Days"
-
-#: templates/app/editor/sidebar.dtl:27
-msgid "5 Minutes"
-msgstr "5 Minutes"
-
-#: templates/app/editor/sidebar.dtl:36
-msgid "6 Months"
-msgstr "6 Months"
-
-#: templates/info.dtl:30
+#: templates/info.dtl:31
 msgid "Application"
 msgstr "Application"
 
-#: templates/info.dtl:2 templates/info.dtl:7
+#: templates/info.dtl:3 templates/info.dtl:8
 msgid "Application Report"
 msgstr "Application Report"
 
-#: templates/info.dtl:54
+#: templates/info.dtl:55
 msgid "Bytes"
 msgstr "Bytes"
 
-#: templates/app/paste/sidebar.dtl:51 templates/app/view/sidebar.dtl:50
+#: templates/app/paste/sidebar.dtl:51 templates/app/view/sidebar.dtl:53
 msgid "Copy"
 msgstr "Copy"
 
-#: templates/info.dtl:75
+#: templates/info.dtl:76
 msgid "Count"
 msgstr "Count"
 
-#: templates/app/paste/sidebar.dtl:19 templates/app/view/sidebar.dtl:18
+#: templates/app/view/sidebar.dtl:19
+msgid "Created"
+msgstr "Created"
+
+#: templates/app/paste/sidebar.dtl:19
 msgid "Created At"
 msgstr "Created At"
 
-#: templates/info.dtl:32
+#: templates/info.dtl:33
 msgid "Description"
 msgstr "Description"
 
-#: templates/app/paste/sidebar.dtl:54 templates/app/view/sidebar.dtl:53
+#: templates/app/paste/sidebar.dtl:54 templates/app/view/sidebar.dtl:56
 msgid "Download"
 msgstr "Download"
 
-#: templates/info.dtl:12
+#: templates/info.dtl:13
 msgid "Erlang Version"
 msgstr "Erlang Version"
 
@@ -105,39 +65,39 @@ msgstr "Error"
 msgid "Help"
 msgstr "Help"
 
-#: templates/app/paste/sidebar.dtl:15 templates/app/view/sidebar.dtl:14
+#: templates/app/paste/sidebar.dtl:15 templates/app/view/sidebar.dtl:15
 msgid "ID"
 msgstr "ID"
 
-#: templates/app/paste/sidebar.dtl:7 templates/app/view/sidebar.dtl:6
+#: templates/app/paste/sidebar.dtl:7 templates/app/view/sidebar.dtl:7
 msgid "Info"
 msgstr "Info"
 
-#: templates/info.dtl:53 templates/info.dtl:74
+#: templates/info.dtl:54 templates/info.dtl:75
 msgid "Key"
 msgstr "Key"
 
-#: templates/info.dtl:18
+#: templates/info.dtl:19
 msgid "Language"
 msgstr "Language"
 
-#: templates/app/editor/sidebar.dtl:45
+#: templates/app/editor/sidebar.dtl:37
 msgid "Line Numbers"
 msgstr "Line Numbers"
 
-#: templates/app/paste/sidebar.dtl:29 templates/app/view/sidebar.dtl:28
+#: templates/app/paste/sidebar.dtl:29 templates/app/view/sidebar.dtl:31
 msgid "Lines"
 msgstr "Lines"
 
-#: templates/info.dtl:26
+#: templates/info.dtl:27
 msgid "Loaded Applications"
 msgstr "Loaded Applications"
 
-#: templates/info.dtl:49
+#: templates/info.dtl:50
 msgid "Memory Utilization"
 msgstr "Memory Utilization"
 
-#: templates/info.dtl:69
+#: templates/info.dtl:70
 msgid "Mnesia Statistics"
 msgstr "Mnesia Statistics"
 
@@ -145,15 +105,15 @@ msgstr "Mnesia Statistics"
 msgid "New Paste"
 msgstr "New Paste"
 
-#: templates/info.dtl:10
+#: templates/info.dtl:11
 msgid "Node"
 msgstr "Node"
 
-#: templates/app/editor/sidebar.dtl:48 templates/app/editor/sidebar.dtl:57
+#: templates/app/editor/sidebar.dtl:40 templates/app/editor/sidebar.dtl:49
 msgid "Off"
 msgstr "Off"
 
-#: templates/app/editor/sidebar.dtl:47 templates/app/editor/sidebar.dtl:56
+#: templates/app/editor/sidebar.dtl:39 templates/app/editor/sidebar.dtl:48
 msgid "On"
 msgstr "On"
 
@@ -170,54 +130,54 @@ msgstr "Paste Index"
 msgid "PrivatePaste.com"
 msgstr "PrivatePaste.com"
 
-#: templates/app/paste/sidebar.dtl:46 templates/app/view/sidebar.dtl:45
+#: templates/app/paste/sidebar.dtl:46 templates/app/view/sidebar.dtl:48
 msgid "Remove"
 msgstr "Remove"
 
-#: templates/app/paste/sidebar.dtl:46 templates/app/view/sidebar.dtl:45
+#: templates/app/paste/sidebar.dtl:46 templates/app/view/sidebar.dtl:48
 msgid "Report"
 msgstr "Report"
 
-#: templates/app/paste/sidebar.dtl:40 templates/app/view/sidebar.dtl:39
+#: templates/app/paste/sidebar.dtl:40 templates/app/view/sidebar.dtl:42
 msgid "Report Paste"
 msgstr "Report Paste"
 
-#: templates/app/paste/sidebar.dtl:45 templates/app/view/sidebar.dtl:44
+#: templates/app/paste/sidebar.dtl:45 templates/app/view/sidebar.dtl:47
 msgid "ReportInformation"
 msgstr "ReportInformation"
 
-#: templates/info.dtl:91
+#: templates/info.dtl:92
 msgid "Request Headers"
 msgstr "Request Headers"
 
-#: templates/app/paste/sidebar.dtl:23 templates/app/view/sidebar.dtl:22
+#: templates/app/paste/sidebar.dtl:23 templates/app/view/sidebar.dtl:24
 msgid "Revision"
 msgstr "Revision"
 
-#: templates/info.dtl:14
+#: templates/info.dtl:15
 msgid "Running Processes"
 msgstr "Running Processes"
 
-#: templates/app/editor/sidebar.dtl:67
+#: templates/app/editor/sidebar.dtl:59
 msgid "Save"
 msgstr "Save"
 
-#: templates/app/editor/sidebar.dtl:54 templates/app/paste/sidebar.dtl:31
-#: templates/app/view/sidebar.dtl:30
+#: templates/app/editor/sidebar.dtl:46 templates/app/paste/sidebar.dtl:31
+#: templates/app/view/sidebar.dtl:33
 msgid "Secure Paste"
 msgstr "Secure Paste"
 
 #: templates/app/editor/sidebar.dtl:14 templates/app/paste/sidebar.dtl:25
-#: templates/app/view/sidebar.dtl:24
+#: templates/app/view/sidebar.dtl:27
 msgid "Syntax"
 msgstr "Syntax"
 
-#: templates/info.dtl:16
+#: templates/info.dtl:17
 msgid "System Architecture"
 msgstr "System Architecture"
 
 #: templates/app/editor/sidebar.dtl:24 templates/app/paste/sidebar.dtl:17
-#: templates/app/view/sidebar.dtl:16
+#: templates/app/view/sidebar.dtl:17
 msgid "TTL"
 msgstr "TTL"
 
@@ -233,7 +193,11 @@ msgstr "Terms &amp; Conditions"
 msgid "Toogle Navigation"
 msgstr "Toogle Navigation"
 
-#: templates/app/paste/sidebar.dtl:21 templates/app/view/sidebar.dtl:20
+#: templates/app/view/sidebar.dtl:22
+msgid "Updated"
+msgstr "Updated"
+
+#: templates/app/paste/sidebar.dtl:21
 msgid "Updated At"
 msgstr "Updated At"
 
@@ -241,10 +205,10 @@ msgstr "Updated At"
 msgid "Upload"
 msgstr "Upload"
 
-#: templates/info.dtl:31
+#: templates/info.dtl:32
 msgid "Version"
 msgstr "Version"
 
-#: templates/app/paste/sidebar.dtl:27 templates/app/view/sidebar.dtl:26
+#: templates/app/paste/sidebar.dtl:27 templates/app/view/sidebar.dtl:29
 msgid "Views"
 msgstr "Views"
