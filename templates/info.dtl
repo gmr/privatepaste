@@ -1,5 +1,4 @@
 {% extends "base.dtl" %}
-{% load humanize %}
 {% block title %}{{ _("Application Report") }}{% endblock %}
 {% block content %}
 <div class="container" id="info">
