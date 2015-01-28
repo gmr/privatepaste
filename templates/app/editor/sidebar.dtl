@@ -15,7 +15,7 @@
             <div class="col-sm-6">
               <select class="form-control" id="syntax">
                 {% for id, name in modes %}
-                <option value="{{ id }}">{{ name }}</option>
+                <option value="{{ id }}"{% if id == syntax %} selected="selected"{% endif %}>{{ name }}</option>
                 {% endfor %}
               </select>
             </div>
@@ -24,8 +24,8 @@
             <label class="col-sm-4 control-label" for="ttl">{{ _("TTL") }}</label>
             <div class="col-sm-6">
               <select class="form-control" id="ttl">
-                {% for id, ttl in ttls %}
-                <option value="{{ id }}">{{ ttl }}</option>
+                {% for id, desc in ttls %}
+                <option value="{{ id }}"{% if id == ttl %} selected="selected"{% endif %}>{{ desc }}</option>
                 {% endfor %}
               </select>
             </div>
