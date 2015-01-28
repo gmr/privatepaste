@@ -6,6 +6,7 @@
 -export([create_paste/2,
          delete_paste/1,
          get_paste/2,
+         increment_paste_views/2,
          update_paste/3]).
 
 -include("privpaste.hrl").
@@ -54,6 +55,19 @@ get_paste(Hostname, Id) ->
 	end,
     {atomic, Response} = mnesia:transaction(Match),
     Response.
+
+increment_paste_views(Hostname, Id) ->
+    Pattern = #paste{hostname=Hostname, id=Id, _='_'},
+    Update = fun() ->
+        case mnesia:match_object(pastes, Pattern, write) of
+            []       -> not_found;
+            Result ->
+                Paste = hd(Result),
+                Incremented = Paste#paste{views=Paste#paste.views + 1},
+                mnesia:write(pastes, Incremented, write)
+        end
+    end,
+    mnesia:activity(transaction, Update).
 
 update_paste(Hostname, Id, Paste) ->
     Pattern = #paste{hostname=Hostname, id=Id, _='_'},

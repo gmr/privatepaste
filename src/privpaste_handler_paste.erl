@@ -126,13 +126,16 @@ check_authorization(Req, #paste{} = Paste) ->
     end.
 
 get_line_count(Content) ->
-    length(lists:filter(fun(E) -> E == 10 end, binary_to_list(Content))).
+    length(lists:filter(fun(E) -> E == 10 end, binary_to_list(Content))) + 1.
 
 get_paste(Req) ->
-    case privpaste_db:get_paste(cowboy_req:host(Req), cowboy_req:binding(paste_id, Req)) of
+    Hostname = cowboy_req:host(Req),
+    Id = cowboy_req:binding(paste_id, Req),
+    case privpaste_db:get_paste(Hostname, Id) of
         {ok, Paste} ->
             try
                 ok = check_authorization(Req, Paste),
+                privpaste_db:increment_paste_views(Hostname, Id),
                 {ok, Paste}
             catch
                 error:{badmatch, password_mismatch} -> unauthorized
