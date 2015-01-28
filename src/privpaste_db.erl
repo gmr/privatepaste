@@ -60,9 +60,10 @@ update_paste(Hostname, Id, Paste) ->
     Update = fun() ->
         case mnesia:match_object(pastes, Pattern, write) of
             []       -> not_found;
-            OldPaste ->
+            Result ->
+                OldPaste = hd(Result),
                 try
-                    ok = check_ids(Id, Paste#paste.id),
+                    ok = check_ids(Id, Paste),
                     ok = check_expiration(OldPaste),
                     ok = check_expiration(Paste),
                     ok = check_hostnames(Hostname, OldPaste),
@@ -82,18 +83,14 @@ update_paste(Hostname, Id, Paste) ->
                 end
         end
     end,
-    case mnesia:activity(transaction, Update) of
-        {atomic, conflict}     -> conflict;
-        {atomic, not_found}    -> not_found;
-        {atomic, ok, Paste}    -> {ok, Paste};
-        {atomic, Error}        -> {error, Error}
-    end.
+    mnesia:activity(transaction, Update).
 
 %% ------------------------------------------------------------------
 %% Internal Methods
 %% ------------------------------------------------------------------
 
 expired_paste(Id) ->
+    lager:log(debug, self(), "Removing expired paste ~s", [Id]),
     delete_paste(Id),
     not_found.
 
