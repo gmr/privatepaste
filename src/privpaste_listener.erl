@@ -27,7 +27,7 @@ start_link() ->
 %% ------------------------------------------------------------------
 
 init([]) ->
-    Dispatch = cowboy_router:compile(privpaste_routes:get()),
+    Dispatch = privpaste_routes:get(),
     cowboy:start_http(privpaste_cowboy_listener,
                       listener_count(),
                       [{port, port()}],
