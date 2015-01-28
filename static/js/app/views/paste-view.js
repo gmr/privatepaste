@@ -15,7 +15,7 @@ function(Backbone, CodeMirror) {
                                              readOnly: true,
                                              styleActiveLine: true});
           this.cm.setSize('auto', '100%');
-          if (syntax != 'mode') {
+          if (syntax != 'none') {
               require(['codemirror/mode/' + syntax + '/' + syntax],
                       _.bind(function(_mode) {
                         this.cm.setOption('mode', syntax);
