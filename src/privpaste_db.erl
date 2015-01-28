@@ -12,7 +12,7 @@
 
 create_paste(Hostname, Paste) ->
     try
-        ok = check_hostnames(Hostname, Paste),
+        ok = check_hostname(Hostname, Paste),
         ok = check_id_is_empty(Paste),
         ok = check_syntax(Paste),
         ok = check_ttl(Paste),
@@ -66,8 +66,8 @@ update_paste(Hostname, Id, Paste) ->
                     ok = check_ids(Id, Paste),
                     ok = check_expiration(OldPaste),
                     ok = check_expiration(Paste),
-                    ok = check_hostnames(Hostname, OldPaste),
-                    ok = check_hostnames(Hostname, Paste),
+                    ok = check_hostname(Hostname, OldPaste),
+                    ok = check_hostname(Hostname, Paste),
                     ok = check_syntax(Paste),
                     ok = check_ttl(Paste),
                     Updated = Paste#paste{id=Id,
@@ -111,7 +111,7 @@ check_expiration(#paste{} = Paste) ->
         false -> ok
     end.
 
-check_hostnames(Expectation, #paste{}=Paste) ->
+check_hostname(Expectation, #paste{}=Paste) ->
     case Expectation == Paste#paste.hostname of
         true  -> ok;
         false -> hostname_mismatch

@@ -41,9 +41,13 @@ terminate(_Reason, _Req, _State) ->
 %% ------------------------------------------------------------------
 
 from_json(Req, State) ->
-    {StatusCode, Payload} = process_accept_request(Req),
-    Req1 = cowboy_req:set_resp_body(Payload, Req),
-    Req2 = cowboy_req:reply(StatusCode, Req1),
+    {ok, Body, Req1} = cowboy_req:body(Req),
+    Data = privpaste_util:proplist_to_paste(jsx:decode(Body)),
+    {StatusCode, Payload} = process_accept_request(cowboy_req:method(Req),
+                                                   cowboy_req:host(Req),
+                                                   cowboy_req:binding(paste_id, Req1, null),
+                                                   Data),
+    Req2 = cowboy_req:reply(StatusCode, [?CONTENT_TYPE_JSON], Payload, Req1),
     {stop, Req2, State}.
 
 get_html(Req, State) ->
@@ -62,24 +66,28 @@ get_json(Req, State) ->
 %% Internal Request Processors
 %% ------------------------------------------------------------------
 
-process_accept_request(Req) ->
-    case cowboy_req:method(Req) of
-        <<"POST">> ->
-            case privpaste_db:create_paste(cowboy_req:host(Req), get_submitted_data(Req)) of
-                conflict       -> {409, ?EMPTY};
-                {ok, Paste}    -> {201, jsx:encode(privpaste_util:paste_to_proplist(Paste))};
-                {error, Error} -> {500, jsx:encode([{?ERROR, Error}])}
-            end;
-        <<"PUT">> ->
-            case update_paste(Req) of
-                conflict       -> {409, ?EMPTY};
-                not_found      -> {404, ?EMPTY};
-                unauthorized   -> {403, ?EMPTY};
-                {ok, Paste}    -> {201, jsx:encode(privpaste_util:paste_to_proplist(Paste))};
-                {error, Error} -> {500, jsx:encode([{?ERROR, Error}])}
-            end;
-        _ -> {405, <<"Method not supported">>}
-    end.
+process_accept_request(Method, Hostname, null, Data) when Method == <<"POST">> ->
+    case privpaste_db:create_paste(Hostname, Data) of
+        conflict       -> {409, ?EMPTY};
+        {ok, Paste}    -> {201, jsx:encode(privpaste_util:paste_to_proplist(Paste))};
+        {error, Error} -> {500, jsx:encode([{?ERROR, Error}])}
+    end;
+
+process_accept_request(Method, _, _, _) when Method == <<"POST">> ->
+    {409, ?EMPTY};
+
+%% TODO needs to handle authentication tied to owner
+process_accept_request(Method, Hostname, Id, Data) when Method == <<"PUT">> ->
+    case privpaste_db:update_paste(Hostname, Id, Data) of
+        conflict       -> {409, ?EMPTY};
+        not_found      -> {404, ?EMPTY};
+        unauthorized   -> {403, ?EMPTY};
+        {ok, Paste}    -> {201, jsx:encode(privpaste_util:paste_to_proplist(Paste))};
+        {error, Error} -> {500, jsx:encode([{?ERROR, Error}])}
+    end;
+
+process_accept_request(Method, Hostname, Id, Data) ->
+    {405, ?EMPTY}.
 
 process_get_html_request(Req) ->
     case get_paste(Req) of
@@ -132,18 +140,5 @@ get_paste(Req) ->
         not_found -> not_found
     end.
 
-get_submitted_data(Req) ->
-    {ok, Body, _} = cowboy_req:body(Req),
-    privpaste_util:proplist_to_paste(jsx:decode(Body)).
-
 santize_paste(Paste) ->
     proplists:delete(password, privpaste_util:paste_to_proplist(Paste)).
-
-%% TODO needs to handle authentication tied to owner
-update_paste(Req) ->
-    Hostname = cowboy_req:host(Req),
-    Id = cowboy_req:binding(paste_id, Req),
-    case privpaste_db:get_paste(Hostname, Id) of
-        not_found -> not_found;
-        {ok, _}   -> privpaste_db:update_paste(Hostname, Id, get_submitted_data(Req))
-    end.
