@@ -97,8 +97,7 @@ function(Backbone, _, Paste, CodeMirror) {
                 console.log("Error saving model", response);
             },
             success: function(model, response, options){
-                //window.location.pathname = '/' + model.get('id');
-                console.log('Saved');
+                window.location.pathname = '/' + model.get('id');
             }
         });
     },
