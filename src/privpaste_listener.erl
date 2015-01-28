@@ -55,24 +55,46 @@ code_change(_OldVsn, State, _Extra) ->
 %% Response handling behaviors
 %% ------------------------------------------------------------------
 
-on_response(Code, _Headers, _Body, Req) when is_integer(Code), Code >= 400 ->
-
-    %% Need to maek this conditional on content-type
-
+on_response(Code, Headers, _Body, Req) when is_integer(Code), Code >= 400 ->
     lager:log(info, self(), "~p ~s ~s", [Code, cowboy_req:method(Req), cowboy_req:path(Req)]),
-    Message = proplists:get_value(Code, ?STATUS_CODES, <<"Undefined Error Code">>),
-    Opts = [{translation_fun, ?TRANSLATE,
-            {locale, privpaste_util:get_language(Req)}],
-    {ok, Body} = error_dtl:render([{code, integer_to_list(Code)},
-                                   {message, Message}], Opts),
-    cowboy_req:reply(Code,
-                     [{<<"Content-Type">>, <<"text/html">>},
-                      {<<"Content-Length">>, integer_to_list(byte_size(list_to_binary(Body)))}],
-                      Body, Req);
+    [_, _, Subtype, _] = proplists:get_value(?CONTENT_TYPE, Headers),
+    {Headers1, Body} = get_error_response(Code, Subtype, Req),
+    Req1 = cowboy_req:reply(Code, merge_headers(Headers, Headers1), Body, Req),
+    Req1;
 
 on_response(Code, _Headers, _Body, Req) ->
     lager:log(info, self(), "~p ~s ~s", [Code, cowboy_req:method(Req), cowboy_req:path(Req)]),
     Req.
+
+%% ------------------------------------------------------------------
+%% Internal methods
+%% ------------------------------------------------------------------
+get_body_size(Body) when is_binary(Body) ->
+    integer_to_list(byte_size(Body));
+
+get_body_size(Body) when is_list(Body) ->
+    integer_to_list(byte_size(list_to_binary(Body))).
+
+get_error_response(Code, Subtype, Req) ->
+    case Subtype of
+        <<"json">> ->
+            Body = jsx:encode([{?ERROR, proplists:get_value(Code, ?STATUS_CODES)}]),
+            Headers = [{?CONTENT_TYPE, ?MIME_TYPE_JSON},
+                       {?CONTENT_LENGTH, get_body_size(Body)}],
+            {Headers, Body};
+        _ ->
+            {ok, Body} = error_dtl:render([{code, integer_to_list(Code)},
+                                           {message, proplists:get_value(Code, ?STATUS_CODES)}],
+                                           privpaste_util:erlydtl_opts(Req)),
+            Headers = [{?CONTENT_TYPE, ?MIME_TYPE_HTML},
+                       {?CONTENT_LENGTH, get_body_size(Body)}],
+            {Headers, Body}
+    end.
+
+merge_headers(Headers1, Headers2) ->
+     orddict:merge(fun(_, X, Y) -> X, Y end,
+                   orddict:from_list(Headers1),
+                   orddict:from_list(Headers2)).
 
 listener_count() ->
     privpaste_util:get_int_from_env("HTTP_LISTENER_COUNT", http_listener_count).

@@ -18,6 +18,7 @@
 
 -define(ERROR,        <<"error">>).
 
+-define(CONTENT_LENGTH, <<"content-length">>).
 -define(CONTENT_TYPE, <<"content-type">>).
 -define(MIME_TYPE_HTML, <<"text/html">>).
 -define(MIME_TYPE_JSON, <<"application/json">>).
