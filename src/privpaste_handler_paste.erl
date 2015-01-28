@@ -42,21 +42,27 @@ terminate(_Reason, _Req, _State) ->
 
 from_json(Req, State) ->
     {StatusCode, Payload} = process_accept_request(Req),
-    Req1 = cowboy_req:set_resp_body(Payload, Req),
-    Req2 = cowboy_req:reply(StatusCode, Req1),
-    {stop, Req2, State}.
+    Req1 = cowboy_req:reply(StatusCode,
+                            [{?CONTENT_TYPE, ?MIME_TYPE_HTML},
+                             {?CONTENT_LENGTH, privpaste_util:get_body_size(Payload)}],
+                            Payload, Req),
+    {stop, Req1, State}.
 
 get_html(Req, State) ->
     {StatusCode, Payload} = process_get_html_request(Req),
-    Req1 = cowboy_req:set_resp_body(Payload, Req),
-    Req2 = cowboy_req:reply(StatusCode, Req1),
-    {stop, Req2, State}.
+    Req1 = cowboy_req:reply(StatusCode,
+                            [{?CONTENT_TYPE, ?MIME_TYPE_HTML},
+                             {?CONTENT_LENGTH, privpaste_util:get_body_size(Payload)}],
+                            Payload, Req),
+    {stop, Req1, State}.
 
 get_json(Req, State) ->
     {StatusCode, Payload} = process_get_json_request(Req),
-    Req1 = cowboy_req:set_resp_body(Payload, Req),
-    Req2 = cowboy_req:reply(StatusCode, Req1),
-    {stop, Req2, State}.
+    Req1 = cowboy_req:reply(StatusCode,
+                            [{?CONTENT_TYPE, ?MIME_TYPE_JSON},
+                             {?CONTENT_LENGTH, privpaste_util:get_body_size(Payload)}],
+                            Payload, Req),
+    {stop, Req1, State}.
 
 %% ------------------------------------------------------------------
 %% Internal Request Processors
@@ -92,7 +98,7 @@ process_get_html_request(Req) ->
                                              {syntax, proplists:get_value(Paste#paste.syntax, ?MODES)},
                                              {ttl, proplists:get_value(Paste#paste.ttl, ?TTLS)}],
                                              privpaste_util:erlydtl_opts(Req)),
-            {200, Payload}
+            {200, list_to_binary(Payload)}
     end.
 
 process_get_json_request(Req) ->
