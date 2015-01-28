@@ -1,4 +1,4 @@
-{application, privpaste,
+{application, privatepaste,
  [
   {description, "PrivatePaste.com"},
   {vsn, "2.0.0"},
@@ -13,7 +13,7 @@
      erlydtl
     ]},
   {modules, []},
-  {mod, {privpaste, []}},
+  {mod, {privatepaste, []}},
   {env, [{http_port, 8080},
          {http_listener_count, 100},
          {http_timeout, 12000},

@@ -1,3 +1,6 @@
+%% ------------------------------------------------------------------
+%% Primary Supervisor for PrivatePaste processes
+%% ------------------------------------------------------------------
 -module(privpaste_sup).
 
 -behaviour(supervisor).

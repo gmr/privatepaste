@@ -63,7 +63,8 @@ process_accept_request(Req) ->
     case cowboy_req:method(Req) of
         <<"POST">> ->
             case privpaste_db:create_paste(cowboy_req:host(Req), get_submitted_data(Req)) of
-                {ok, Paste} -> {201, jsx:encode(privpaste_util:paste_to_proplist(Paste))};
+                conflict       -> {409, ?EMPTY};
+                {ok, Paste}    -> {201, jsx:encode(privpaste_util:paste_to_proplist(Paste))};
                 {error, Error} -> {500, jsx:encode([{?ERROR, Error}])}
             end;
         <<"PUT">> ->
@@ -86,7 +87,7 @@ process_get_html_request(Req) ->
                                              {modes, ?MODES},
                                              {paste, privpaste_util:paste_to_proplist(Paste)},
                                              {syntax, proplists:get_value(Paste#paste.syntax, ?MODES)},
-                                             {ttls, proplists:get_value(Paste#paste.ttl, ?TTLS)}],
+                                             {ttl, proplists:get_value(Paste#paste.ttl, ?TTLS)}],
                                              privpaste_util:erlydtl_opts(Req)),
             {200, Payload}
     end.

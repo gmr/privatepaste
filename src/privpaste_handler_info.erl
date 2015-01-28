@@ -1,4 +1,7 @@
--module(privpaste_info).
+%% ------------------------------------------------------------------
+%% Info Page Endpoint
+%% ------------------------------------------------------------------
+-module(privpaste_handler_info).
 
 -export([init/2,
          content_types_provided/2,

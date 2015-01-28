@@ -1,4 +1,7 @@
--module(privpaste_edit).
+%% ------------------------------------------------------------------
+%% Editor Page Endpoint
+%% ------------------------------------------------------------------
+-module(privpaste_handler_editor).
 
 -export([init/2,
          content_types_provided/2,
@@ -19,7 +22,6 @@ terminate(_Reason, _Req, _State) ->
     ok.
 
 handle_html(Req, State) ->
-    Opts = [{translation_fun, ?TRANSLATE,
-            {locale, privpaste_util:get_language(Req)}],
-    {ok, Body} = editor_dtl:render([{modes, ?MODES}], Opts),
+    {ok, Body} = editor_dtl:render([{modes, ?MODES}, {ttls, ?TTLS}],
+                                   privpaste_util:erlydtl_opts(Req)),
     {Body, Req, State}.

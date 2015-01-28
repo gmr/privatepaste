@@ -10,9 +10,6 @@
 
 -include("privpaste.hrl").
 
--define(ID_CHARS, "0123456789ABCDEF").
--define(ID_LENGTH, 10).
-
 create_paste(Hostname, Paste) ->
     try
         ok = check_hostnames(Hostname, Paste),
@@ -23,9 +20,14 @@ create_paste(Hostname, Paste) ->
         Write = fun() ->
             mnesia:write(pastes, NewPaste, write)
         end,
+        lager:log(info, self(), "Paste: writing ~s to database", [NewPaste#paste.id]),
         case mnesia:activity(transaction, Write) of
-            ok  -> {ok, NewPaste};
-            Err -> {error, Err}
+            ok  ->
+                lager:log(info, self(), "Paste: ~s added", [NewPaste#paste.id]),
+                {ok, NewPaste};
+            Err ->
+                lager:log(error, self(), "Paste: error writing paste ~s: ~p", [NewPaste#paste.id, Err]),
+                {error, Err}
         end
     catch
         error:{badmatch, hostname_mistmatch} -> conflict;
@@ -102,10 +104,8 @@ expired_paste(Id) ->
     not_found.
 
 new_id() ->
-    list_to_binary(lists:foldl(fun(_, Acc) ->
-                        [lists:nth(random:uniform(length(?ID_CHARS)), ?ID_CHARS)]
-                            ++ Acc
-                   end, [], lists:seq(1, ?ID_LENGTH))).
+    Base = uuid:uuid_to_string(uuid:get_v4()),
+    string:substr(Base, 1, 8).
 
 %% ------------------------------------------------------------------
 %% Validation Methods

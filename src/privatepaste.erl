@@ -1,4 +1,7 @@
--module(privpaste).
+%% ------------------------------------------------------------------
+%% PrivatePaste Core Application
+%% ------------------------------------------------------------------
+-module(privatepaste).
 
 -export([start/0, start/2, stop/0, stop/1]).
 
@@ -6,7 +9,7 @@
 
 start() ->
     startApplication(),
-    {ok, _Started} = application:ensure_all_started(privpaste).
+    {ok, _Started} = application:ensure_all_started(privatepaste).
 
 start(_StartType, _StartArgs) ->
     startApplication(),
@@ -20,7 +23,6 @@ stop(_State) ->
 
 startApplication() ->
     application:set_env(gettext, gettext_dir, "translations"),
-    random:seed(erlang:now()),
     mnesia:create_schema([node()]),
     mnesia:start(),
     mnesia:create_table(pastes, [{attributes, record_info(fields, paste)},
