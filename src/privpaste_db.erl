@@ -20,14 +20,9 @@ create_paste(Hostname, Paste) ->
         Write = fun() ->
             mnesia:write(pastes, NewPaste, write)
         end,
-        lager:log(info, self(), "Paste: writing ~s to database", [NewPaste#paste.id]),
         case mnesia:activity(transaction, Write) of
-            ok  ->
-                lager:log(info, self(), "Paste: ~s added", [NewPaste#paste.id]),
-                {ok, NewPaste};
-            Err ->
-                lager:log(error, self(), "Paste: error writing paste ~s: ~p", [NewPaste#paste.id, Err]),
-                {error, Err}
+            ok  -> {ok, NewPaste};
+            Err -> {error, Err}
         end
     catch
         error:{badmatch, hostname_mistmatch} -> conflict;
@@ -37,29 +32,28 @@ create_paste(Hostname, Paste) ->
     end.
 
 delete_paste(Id) ->
-    lager:log(info, self(), "delete_paste: ~p", [Id]),
     Delete = fun() ->
         mnesia:delete(pastes,  Id, write)
     end,
     mnesia:activity(transaction, Delete).
 
 get_paste(Hostname, Id) ->
-    Pattern = #paste{hostname=Hostname, id=Id, _ = '_'},
+    Pattern = #paste{hostname=Hostname, id=Id, _='_'},
     Match = fun() ->
-        mnesia:match_object(pastes, Pattern, read)
+        case mnesia:match_object(pastes, Pattern, read) of
+            [] -> not_found;
+            Result ->
+                Paste = hd(Result),
+                try
+                    ok = check_expiration(Paste),
+                    {ok, Paste}
+                catch
+                    error:{badmatch, expired_paste} -> expired_paste(Id)
+                end
+        end
 	end,
-    case mnesia:transaction(Match) of
-        {atomic, []}    -> not_found;
-        {atomic, Result} ->
-            lager:log(info, self(), "Returned ~p records", [length(Result)]),
-            Paste = hd(Result),
-            try
-                ok = check_expiration(Paste),
-                {ok, Paste}
-            catch
-                error:{badmatch, expired_paste} -> expired_paste(Id)
-            end
-    end.
+    {atomic, Response} = mnesia:transaction(Match),
+    Response.
 
 update_paste(Hostname, Id, Paste) ->
     Pattern = #paste{hostname=Hostname, id=Id, _='_'},
@@ -105,7 +99,7 @@ expired_paste(Id) ->
 
 new_id() ->
     Base = uuid:uuid_to_string(uuid:get_v4()),
-    string:substr(Base, 1, 8).
+    list_to_binary(string:substr(Base, 1, 8)).
 
 %% ------------------------------------------------------------------
 %% Validation Methods

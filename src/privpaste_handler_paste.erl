@@ -7,7 +7,7 @@
          allowed_methods/2,
          content_types_accepted/2,
          content_types_provided/2,
-         accept_paste/2,
+         from_json/2,
          get_html/2,
          get_json/2,
          terminate/3]).
@@ -24,10 +24,10 @@ init(Req, Opts) ->
     {cowboy_rest, Req, Opts}.
 
 allowed_methods(Req, State) ->
-    {[<<"GET">>, <<"POST">>, <<"PUT">>, <<"DELETE">>], Req, State}.
+    {[<<"GET">>, <<"POST">>, <<"PUT">>], Req, State}.
 
 content_types_accepted(Req, State) ->
-    {[{{<<"application">>, <<"json">>, []}, accept_paste}], Req, State}.
+    {[{{<<"application">>, <<"json">>, []}, from_json}], Req, State}.
 
 content_types_provided(Req, State) ->
     {[{?MIME_TYPE_JSON, get_json},
@@ -40,20 +40,23 @@ terminate(_Reason, _Req, _State) ->
 %% Exposed Request Endpoints
 %% ------------------------------------------------------------------
 
-accept_paste(Req, State) ->
+from_json(Req, State) ->
     {StatusCode, Payload} = process_accept_request(Req),
-    Response = cowboy_req:reply(StatusCode, [{<<"content-type">>, <<"application/json">>}], Payload, Req),
-    {stop, Response, State}.
+    Req1 = cowboy_req:set_resp_body(Payload, Req),
+    Req2 = cowboy_req:reply(StatusCode, Req1),
+    {stop, Req2, State}.
 
 get_html(Req, State) ->
     {StatusCode, Payload} = process_get_html_request(Req),
-    Response = cowboy_req:reply(StatusCode, [?CONTENT_TYPE_HTML], Payload, Req),
-    {stop, Response, State}.
+    Req1 = cowboy_req:set_resp_body(Payload, Req),
+    Req2 = cowboy_req:reply(StatusCode, Req1),
+    {stop, Req2, State}.
 
 get_json(Req, State) ->
     {StatusCode, Payload} = process_get_json_request(Req),
-    Response = cowboy_req:reply(StatusCode, [?CONTENT_TYPE_JSON], Payload, Req),
-    {stop, Response, State}.
+    Req1 = cowboy_req:set_resp_body(Payload, Req),
+    Req2 = cowboy_req:reply(StatusCode, Req1),
+    {stop, Req2, State}.
 
 %% ------------------------------------------------------------------
 %% Internal Request Processors
