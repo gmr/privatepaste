@@ -8,6 +8,7 @@
          get_atom_from_proplist/3,
          get_binary_from_proplist/2,
          get_binary_from_proplist/3,
+         get_body_size/1,
          get_int_from_proplist/2,
          get_int_from_proplist/3,
          get_int_from_env/2,
@@ -43,6 +44,12 @@ get_binary_from_proplist(Key, Data, Default) ->
         null  -> Default;
         Value -> Value
     end.
+
+get_body_size(Body) when is_binary(Body) ->
+    integer_to_list(byte_size(Body));
+
+get_body_size(Body) when is_list(Body) ->
+    integer_to_list(byte_size(list_to_binary(Body))).
 
 get_int_from_env(OS, App) ->
     case os:getenv(OS) of

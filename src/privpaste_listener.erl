@@ -57,7 +57,7 @@ code_change(_OldVsn, State, _Extra) ->
 
 on_response(Code, Headers, _Body, Req) when is_integer(Code), Code >= 400 ->
     lager:log(info, self(), "~p ~s ~s", [Code, cowboy_req:method(Req), cowboy_req:path(Req)]),
-    [_, _, Subtype, _] = proplists:get_value(?CONTENT_TYPE, Headers),
+    Subtype = get_subtype(Headers),
     {Headers1, Body} = get_error_response(Code, Subtype, Req),
     Req1 = cowboy_req:reply(Code, merge_headers(Headers, Headers1), Body, Req),
     Req1;
@@ -69,25 +69,27 @@ on_response(Code, _Headers, _Body, Req) ->
 %% ------------------------------------------------------------------
 %% Internal methods
 %% ------------------------------------------------------------------
-get_body_size(Body) when is_binary(Body) ->
-    integer_to_list(byte_size(Body));
 
-get_body_size(Body) when is_list(Body) ->
-    integer_to_list(byte_size(list_to_binary(Body))).
+get_subtype(Headers) ->
+    case proplists:get_value(?CONTENT_TYPE, Headers, []) of
+        []                 -> <<"html">>;
+        [_, _, Subtype]    -> Subtype;
+        [_, _, Subtype, _] -> Subtype
+    end.
 
 get_error_response(Code, Subtype, Req) ->
     case Subtype of
         <<"json">> ->
             Body = jsx:encode([{?ERROR, proplists:get_value(Code, ?STATUS_CODES)}]),
             Headers = [{?CONTENT_TYPE, ?MIME_TYPE_JSON},
-                       {?CONTENT_LENGTH, get_body_size(Body)}],
+                       {?CONTENT_LENGTH, privpaste_util:get_body_size(Body)}],
             {Headers, Body};
         _ ->
             {ok, Body} = error_dtl:render([{code, integer_to_list(Code)},
                                            {message, proplists:get_value(Code, ?STATUS_CODES)}],
                                            privpaste_util:erlydtl_opts(Req)),
             Headers = [{?CONTENT_TYPE, ?MIME_TYPE_HTML},
-                       {?CONTENT_LENGTH, get_body_size(Body)}],
+                       {?CONTENT_LENGTH, privpaste_util:get_body_size(Body)}],
             {Headers, Body}
     end.
 
