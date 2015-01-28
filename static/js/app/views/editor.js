@@ -61,7 +61,10 @@ function(Backbone, _, Paste, CodeMirror) {
     initialize: function(){
       this.saveButton = this.$el.find('#save');
       this.redirect = this.$el.find('#redirect');
-      this.model = new Paste();
+
+      this.model = new Paste({syntax: document.getElementById('syntax').value,
+                              ttl: document.getElementById('ttl').value});
+
       this.model.on('change', this.render, this);
       this.cm = CodeMirror(document.getElementById('editor'),
                            {autofocus: true,
