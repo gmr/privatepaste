@@ -10,3 +10,9 @@ Build requirements
 - nodejs && npm
   - bower
   - less
+
+TODO
+----
+Libs to look into/use for things
+- https://github.com/ferd/erlpass.git
+- https://github.com/tim/erlang-oauth.git
