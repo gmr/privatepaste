@@ -4,6 +4,7 @@ ebin
 _rel
 .DS_Store
 .beam
+.idea
 deps
 db
 bower_components
