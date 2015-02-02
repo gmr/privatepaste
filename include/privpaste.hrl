@@ -23,12 +23,13 @@
 -define(DEFAULT_LANGUAGE, "en").
 
 -define(EMPTY, <<"">>).
--define(ERROR,        <<"error">>).
+-define(ERROR, <<"error">>).
 
 -define(CONTENT_LENGTH, <<"content-length">>).
--define(CONTENT_TYPE, <<"content-type">>).
+-define(CONTENT_TYPE,   <<"content-type">>).
 -define(MIME_TYPE_HTML, <<"text/html">>).
 -define(MIME_TYPE_JSON, <<"application/json">>).
+
 -define(CONTENT_TYPE_HTML, {?CONTENT_TYPE, ?MIME_TYPE_HTML}).
 -define(CONTENT_TYPE_JSON, {?CONTENT_TYPE, ?MIME_TYPE_JSON}).
 

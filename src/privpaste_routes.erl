@@ -32,6 +32,12 @@ get() ->
                         []
                     },
                     {
+                        "/download/[:paste_id]",
+                        [{paste_id, fun(Id) -> is_paste_id(Id) end}],
+                        privpaste_handler_download,
+                        []
+                    },
+                    {
                         "/paste/[:paste_id]",
                         [{paste_id, fun(Id) -> is_paste_id(Id) end}],
                         privpaste_handler_paste,

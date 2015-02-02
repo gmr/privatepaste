@@ -13,6 +13,7 @@ define(['backbone', 'moment'], function(Backbone, moment) {
       'views': 0,
       'syntax': 'none',
       'line_numbers': true,
+      'mime_type': null,
       'content': ''
     },
 

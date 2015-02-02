@@ -49,9 +49,9 @@
     </div>
   </div>
   <div class="panel panel-default">
-    <a data-target="copy" href="/#copy/" class="btn btn-primary btn-sidebar copy">{{ _("Copy") }} <i class="pull-right fa fa-code-fork"></i></a>
+    <a href="/copy/{{ paste.id }}" class="btn btn-primary btn-sidebar copy">{{ _("Copy") }} <i class="pull-right fa fa-code-fork"></i></a>
   </div>
   <div class="panel panel-default">
-    <a class="btn btn-info btn-sidebar download">{{ _("Download") }} <i class="pull-right fa fa-download"></i></a>
+    <a href="/download/{{ paste.id }}" class="btn btn-info btn-sidebar download">{{ _("Download") }} <i class="pull-right fa fa-download"></i></a>
   </div>
 </div>

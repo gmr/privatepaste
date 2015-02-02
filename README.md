@@ -21,7 +21,7 @@ TODO
 - ~~Add HTTP request headers to paste~~
 - ~~Add mime-type to paste~~
 - ~~Update sanitize to omit request headers and remote ip~~
-- Download Paste
+- ~~Download Paste~~
 - Copy Paste
 - Disable Edit
 - Content Scanning / Blocking

@@ -22,6 +22,9 @@ terminate(_Reason, _Req, _State) ->
     ok.
 
 handle_html(Req, State) ->
-    {ok, Body} = editor_dtl:render([{modes, ?MODES}, {syntax, <<"erlang">>}, {ttl, ?TTL_DEFAULT}, {ttls, ?TTLS}],
+    {ok, Body} = editor_dtl:render([{modes, ?MODES},
+                                    {syntax, <<"erlang">>},
+                                    {ttl, ?TTL_DEFAULT},
+                                    {ttls, ?TTLS}],
                                    privpaste_util:erlydtl_opts(Req)),
     {Body, Req, State}.
