@@ -1,3 +1,6 @@
+%% ------------------------------------------------------------------
+%% Common records and macros
+%% ------------------------------------------------------------------
 
 -record(state, {languages}).
 
@@ -12,10 +15,14 @@
                 views :: integer(),
                 syntax :: string(),
                 line_numbers :: atom(),
+                remote_ip :: string(),
+                request_headers :: list(),
+                mime_type :: string(),
                 content :: string()}).
 
 -define(DEFAULT_LANGUAGE, "en").
 
+-define(EMPTY, <<"">>).
 -define(ERROR,        <<"error">>).
 
 -define(CONTENT_LENGTH, <<"content-length">>).
@@ -125,6 +132,3 @@
                {31536000, <<"1 Year">>}]).
 -define(TTL_DEFAULT, 432000).
 -define(TTL_MAX, 31536000).
-
-
--define(TRANSLATE, fun(Key, Locale) -> gettext:key2str(Key, Locale) end}).

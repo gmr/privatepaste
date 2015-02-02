@@ -17,15 +17,16 @@ TODO
 
 ### MVP
 - Add link to Github project in footer
-- Add Remote IP address to paste
-- Add HTTP request headers to paste
-- Add mime-type to paste
-- Update sanitize to omit request headers and remote ip
+- ~~Add Remote IP address to paste~~
+- ~~Add HTTP request headers to paste~~
+- ~~Add mime-type to paste~~
+- ~~Update sanitize to omit request headers and remote ip~~
 - Copy Paste
 - Download Paste
 - Disable Edit
 - Content Scanning / Blocking
 - Session / Secure Cookie
+ - Config based secure cookie signing salt
  - Flagged clients in browser get recaptcha
  - Recaptcha
 - Secure Paste password entry
@@ -35,6 +36,7 @@ TODO
  - OSS Icons for header icon
  - Default syntax
  - Default ttl override
+- Travis build to github release
 
 ### Post-Beta Launch
 - Login
