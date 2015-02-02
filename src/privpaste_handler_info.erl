@@ -24,9 +24,8 @@ terminate(_Reason, _Req, _State) ->
     ok.
 
 handle_html(Req, State) ->
-    Opts = [{translation_fun, ?TRANSLATE,
-            {locale, privpaste_util:get_language(Req)}],
-    {ok, Body} = info_dtl:render(data(Req, false), Opts),
+    {ok, Body} = info_dtl:render(data(Req, false),
+                                 privpaste_util:erlydtl_opts(Req)),
     {Body, Req, State}.
 
 handle_json(Req, State) ->
