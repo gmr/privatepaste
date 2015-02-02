@@ -7,7 +7,7 @@ Build requirements
 ------------------
 - Erlang
 - gettext (including xgettext app)
-- libmagic
+- libmagic (if installed via brew on OS X, make sure that /usr/local is symlinked to /opt/local to compile emagic)
 - nodejs && npm
   - bower
   - less
