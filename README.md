@@ -16,6 +16,7 @@ TODO
 ----
 
 ### MVP
+- Add link to Github project in footer
 - Add Remote IP address to paste
 - Add HTTP request headers to paste
 - Add mime-type to paste
