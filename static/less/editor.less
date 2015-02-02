@@ -12,6 +12,59 @@
   }
 }
 
+#upload {
+  position: absolute;
+  background: #000;
+  opacity: .80;
+  color: #fff;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  z-index: 2000;
+  padding-top: 10%;
+
+  .container {
+    opacity: 1;
+  }
+
+  .close {
+    margin-top: .2em;
+    margin-right: .5em;
+    color: #fff;
+    opacity: 1;
+  }
+
+  h1 {
+    border-bottom: 1px solid @gray-dark;
+    margin: 0 .2em .5em .2em;
+  }
+
+  form {
+    margin: 1em 0;
+  }
+
+  .spacer {
+    width: 2.5em;
+  }
+
+  .dropzone {
+    background: transparent;
+    margin-top: 25px;
+    border: 5px dashed #fff;
+    border-radius: @border-radius-large * 4;
+    outline: 0;
+    padding: 2em;
+    font-size: @font-size-h3;
+    text-align: center;
+    font-weight: bold;
+    .dz-preview.dz-image-preview {
+      background: transparent;
+    }
+  }
+}
+
 @import "./editor/modals.less";
 @import "./editor/notification.less";
 @import "./editor/toolbar.less";

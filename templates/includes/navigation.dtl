@@ -10,7 +10,7 @@
 <div class="collapse navbar-collapse" id="navbar">
   <ul class="nav navbar-nav">
     <li><a href="/"><i class="fa fa-file"></i> {{ _("New Paste") }}</a></li>
-    <li><a href="/upload"><i class="fa fa-upload"></i> {{ _("Upload") }}</a></li>
+    <li><a href="/#upload"><i class="fa fa-upload"></i> {{ _("Upload") }}</a></li>
     <li class="authed hidden"><a href="/pastes"><i class="fa fa-list"></i> {{ _("Paste Index") }}</a></li>
   </ul>
   <ul class="nav navbar-nav visible-xs">

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h1>{{ _("File Upload") }}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <form class="form-inline">
+        <div class="form-group spacer">&nbsp;</div>
+        <div class="form-group">
+          <label for="upload-ttl">{{ _("Expire In") }}&nbsp;</label>
+          <select class="form-control" id="upload-ttl">
+            {% for id, desc in ttls %}
+            <option value="{{ id }}"{% if id == ttl %} selected="selected"{% endif %}>{{ desc }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group spacer">&nbsp;</div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-warning"><i class="fa fa-unlock"></i> {{ _("Insecure File") }}</button>
+        </div>
+        <div class="form-group spacer">&nbsp;</div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> {{ _("Upload File") }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-10">
+      <div class="dropzone"></div>
+    </div>
+  </div>
+</div>

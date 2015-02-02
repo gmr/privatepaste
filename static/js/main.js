@@ -7,7 +7,7 @@ requirejs.config({
     underscore: 'vendor/underscore-min',
     moment: 'vendor/moment.min',
     codemirror: 'vendor/codemirror',
-
+    dropzone: 'vendor/dropzone',
     editor: 'app/views/editor',
     pasteView: 'app/views/paste-view'
   },
@@ -26,13 +26,11 @@ requirejs.config({
   }
 });
 require(['jquery', 'underscore', 'backbone',  'bootstrap', 'editor', 'pasteView'],
-  function($, _, Backbone, Bootstrap, Editor, PasteView) {
-    var bind = document.body.getAttribute('data-bind');
-    if (bind === "view") {
-      var view = new PasteView({el: document.getElementById('content')});
-    } else if (bind === "edit") {
-      var editor = new Editor({el: document.getElementById('content')});
-    }
-
-
-});
+    function($, _, Backbone, Bootstrap, Editor, PasteView) {
+        var bind = document.body.getAttribute('data-bind');
+        if (bind === "view") {
+            var view = new PasteView({el: document.getElementById('content')});
+        } else if (bind === "edit") {
+            var editor = new Editor({el: document.getElementById('content')});
+        }
+    });
