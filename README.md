@@ -22,6 +22,7 @@ TODO
 - ~~Add mime-type to paste~~
 - ~~Update sanitize to omit request headers and remote ip~~
 - ~~Download Paste~~
+- Upload binary paste via JS drag/drop
 - Copy Paste
 - Disable Edit
 - Content Scanning / Blocking
