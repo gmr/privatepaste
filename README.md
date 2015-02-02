@@ -26,6 +26,7 @@ TODO
 - Copy Paste
 - Disable Edit
 - Content Scanning / Blocking
+- Sidebar created at/updated at values as relative values
 - Session / Secure Cookie
  - Config based secure cookie signing salt
  - Flagged clients in browser get recaptcha
