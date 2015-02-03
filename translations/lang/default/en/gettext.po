@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PrivatePaste 2.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-01 20:44-0500\n"
+"POT-Creation-Date: 2015-02-02 22:57-0500\n"
 "PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Gavin M. Roy <gavinmroy@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr "Application Report"
 msgid "Bytes"
 msgstr "Bytes"
 
-#: templates/app/paste/sidebar.dtl:50 templates/app/view/sidebar.dtl:52
+#: templates/app/view/sidebar.dtl:52
 msgid "Copy"
 msgstr "Copy"
 
@@ -41,15 +41,11 @@ msgstr "Count"
 msgid "Created"
 msgstr "Created"
 
-#: templates/app/paste/sidebar.dtl:18
-msgid "Created At"
-msgstr "Created At"
-
 #: templates/info.dtl:32
 msgid "Description"
 msgstr "Description"
 
-#: templates/app/paste/sidebar.dtl:53 templates/app/view/sidebar.dtl:55
+#: templates/app/view/sidebar.dtl:55
 msgid "Download"
 msgstr "Download"
 
@@ -61,15 +57,11 @@ msgstr "Erlang Version"
 msgid "Error"
 msgstr "Error"
 
-#: templates/includes/navigation.dtl:17
-msgid "Help"
-msgstr "Help"
-
-#: templates/app/paste/sidebar.dtl:14 templates/app/view/sidebar.dtl:14
+#: templates/app/view/sidebar.dtl:14
 msgid "ID"
 msgstr "ID"
 
-#: templates/app/paste/sidebar.dtl:6 templates/app/view/sidebar.dtl:6
+#: templates/app/view/sidebar.dtl:6
 msgid "Info"
 msgstr "Info"
 
@@ -85,7 +77,7 @@ msgstr "Language"
 msgid "Line Numbers"
 msgstr "Line Numbers"
 
-#: templates/app/paste/sidebar.dtl:28 templates/app/view/sidebar.dtl:30
+#: templates/app/view/sidebar.dtl:30
 msgid "Lines"
 msgstr "Lines"
 
@@ -101,7 +93,7 @@ msgstr "Memory Utilization"
 msgid "Mnesia Statistics"
 msgstr "Mnesia Statistics"
 
-#: templates/app/editor.dtl:2 templates/includes/navigation.dtl:12
+#: templates/app/editor.dtl:2 templates/includes/navigation.dtl:14
 msgid "New Paste"
 msgstr "New Paste"
 
@@ -125,28 +117,28 @@ msgstr "On"
 msgid "Options"
 msgstr "Options"
 
-#: templates/includes/navigation.dtl:14
+#: templates/includes/navigation.dtl:15
 msgid "Paste Index"
 msgstr "Paste Index"
 
 #: templates/base.dtl:4 templates/error.dtl:2 templates/app/editor.dtl:2
-#: templates/app/view.dtl:2 templates/includes/navigation.dtl:8
+#: templates/app/view.dtl:2 templates/includes/navigation.dtl:10
 msgid "PrivatePaste.com"
 msgstr "PrivatePaste.com"
 
-#: templates/app/paste/sidebar.dtl:45 templates/app/view/sidebar.dtl:47
+#: templates/app/view/sidebar.dtl:47
 msgid "Remove"
 msgstr "Remove"
 
-#: templates/app/paste/sidebar.dtl:45 templates/app/view/sidebar.dtl:47
+#: templates/app/view/sidebar.dtl:47
 msgid "Report"
 msgstr "Report"
 
-#: templates/app/paste/sidebar.dtl:39 templates/app/view/sidebar.dtl:41
+#: templates/app/view/sidebar.dtl:41
 msgid "Report Paste"
 msgstr "Report Paste"
 
-#: templates/app/paste/sidebar.dtl:44 templates/app/view/sidebar.dtl:46
+#: templates/app/view/sidebar.dtl:46
 msgid "ReportInformation"
 msgstr "ReportInformation"
 
@@ -154,7 +146,7 @@ msgstr "ReportInformation"
 msgid "Request Headers"
 msgstr "Request Headers"
 
-#: templates/app/paste/sidebar.dtl:22 templates/app/view/sidebar.dtl:23
+#: templates/app/view/sidebar.dtl:23
 msgid "Revision"
 msgstr "Revision"
 
@@ -166,13 +158,11 @@ msgstr "Running Processes"
 msgid "Save"
 msgstr "Save"
 
-#: templates/app/editor/sidebar.dtl:46 templates/app/paste/sidebar.dtl:30
-#: templates/app/view/sidebar.dtl:32
+#: templates/app/editor/sidebar.dtl:46 templates/app/view/sidebar.dtl:32
 msgid "Secure Paste"
 msgstr "Secure Paste"
 
-#: templates/app/editor/sidebar.dtl:14 templates/app/paste/sidebar.dtl:24
-#: templates/app/view/sidebar.dtl:26
+#: templates/app/editor/sidebar.dtl:14 templates/app/view/sidebar.dtl:26
 msgid "Syntax"
 msgstr "Syntax"
 
@@ -180,8 +170,7 @@ msgstr "Syntax"
 msgid "System Architecture"
 msgstr "System Architecture"
 
-#: templates/app/editor/sidebar.dtl:24 templates/app/paste/sidebar.dtl:16
-#: templates/app/view/sidebar.dtl:16
+#: templates/app/editor/sidebar.dtl:24 templates/app/view/sidebar.dtl:16
 msgid "TTL"
 msgstr "TTL"
 
@@ -189,31 +178,15 @@ msgstr "TTL"
 msgid "Terms & Conditions"
 msgstr "Terms & Conditions"
 
-#: templates/includes/navigation.dtl:18
-msgid "Terms &amp; Conditions"
-msgstr "Terms &amp; Conditions"
-
-#: templates/includes/navigation.dtl:3
-msgid "Toogle Navigation"
-msgstr "Toogle Navigation"
-
 #: templates/app/view/sidebar.dtl:21
 msgid "Updated"
 msgstr "Updated"
-
-#: templates/app/paste/sidebar.dtl:20
-msgid "Updated At"
-msgstr "Updated At"
-
-#: templates/includes/navigation.dtl:13
-msgid "Upload"
-msgstr "Upload"
 
 #: templates/info.dtl:31
 msgid "Version"
 msgstr "Version"
 
-#: templates/app/paste/sidebar.dtl:26 templates/app/view/sidebar.dtl:28
+#: templates/app/view/sidebar.dtl:28
 msgid "Views"
 msgstr "Views"
 

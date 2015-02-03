@@ -1,0 +1,17 @@
+#editor {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+
+  @media (max-width: @screen-sm-max) {
+    margin-right: auto;
+  }
+
+  @media (min-width: @screen-md-min) {
+    margin-right: @sidebar-width;
+  }
+}
+
+@import "./editor/codemirror.less";
+@import "./editor/notification.less";
+@import "./editor/sidebar.less";

@@ -1,9 +1,0 @@
-<div class="toolbar-panels hidden">
-  <div class="toolbar-panel toolbar-button dropdown base64" data-toggle="tooltip" data-placement="right" title="Base64 Encode">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Base64 <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#" data-target="base64-decode"><i class="fa fa-long-arrow-left"></i> Decode</a></li>
-      <li><a href="#" data-target="base64-encode"><i class="fa fa-long-arrow-right"></i> Encode</a></li>
-    </ul>
-  </div>
-</div>

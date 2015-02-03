@@ -13,11 +13,8 @@
     <script data-main="/static/js/main" src="/static/js/require.js"></script>
   </head>
   <body data-bind="{% block body %}default{% endblock %}">
-    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse hidden-print" role="navigation">
-      {% include "includes/navigation.dtl" %}
-    </nav>
+    {% include "includes/navigation.dtl" %}
     <div id="content">{% block content %}Unextend Base{% endblock %}</div>
-    <div id="modals"></div>
-    <footer class="hidden-print hidden-xs">{% include "includes/footer.dtl" %}</footer>
+    {% include "includes/footer.dtl" %}
   </body>
 </html>

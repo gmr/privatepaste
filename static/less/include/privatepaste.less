@@ -1,0 +1,39 @@
+html, body {
+  background: #fafafa;
+  height: 100%;
+  overflow: hidden;
+  z-index: 5;
+}
+
+#content {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: (@navbar-height + 1) 0 (@footer-height) 0;
+}
+
+.fill {
+  min-height: 100%;
+}
+
+.modal {
+  .row {
+    margin: 0;
+  }
+  .button-groups {
+    .form-group {
+      padding: 0 1em;
+      display: inline-block;
+    }
+  }
+}
+
+#info {
+  overflow: scroll;
+  height: 100%;
+}
+
+@import "include/navbar.less";
+@import "include/footer.less";
+@import "editor/editor.less";
+@import "include/error.less";

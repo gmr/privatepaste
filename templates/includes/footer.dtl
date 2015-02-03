@@ -1,9 +1,28 @@
-<div class="row">
-  <div class="col-sm-4"><a href="/terms">{{ _("Terms & Conditions") }}</a></div>
-  <div class="col-sm-4 text-center" data-bind="version">
-    <a href="/info">2.0.0</a>
-    <a href="https://github.com/gmr/privatepaste"><i class="fa fa-github"></i></a>
+<footer class="hidden-print hidden-xs">
+  <div class="row">
+    <div class="col-sm-4"><a href="/terms">{{ _("Terms & Conditions") }}</a></div>
+    <div class="col-sm-4 text-center" data-bind="version">
+      <a href="/info">2.0.0</a>
+      <a href="https://github.com/gmr/privatepaste"><i class="fa fa-github"></i></a>
+    </div>
+    <div class="col-sm-4 text-right">&copy; 2006 &ndash; {% now "Y" %} <a class="poisonpenllc" href="http://poisonpenllc.com">Poison Pen LLC</a></div>
   </div>
-  <div class="col-sm-4 text-right">&copy; 2006 &ndash; {% now "Y" %} <a class="poisonpenllc" href="http://poisonpenllc.com">Poison Pen LLC</a></div>
-</div>
-<nav class="navbar navbar-default navbar-fixed-bottom navbar-inverse visible-sm visible-xs hidden" role="navigation"></nav>
+</footer>
+<nav class="navbar navbar-default navbar-fixed-bottom hidden-md visible-xs" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#footer-nav">
+      <i class="fa fa-cog"></i> {{ _("Options") }}
+    </button>
+    <button type="button" class="navbar-toggle pull-right">
+      <i class="fa fa-floppy-o"></i> {{ _("Save Paste") }}
+    </button>
+  </div>
+  <div class="collapse navbar-collapse">
+    <ul id="mobile-paste-nav" class="nav navbar-nav">
+      <li><a data-target="#syntax"><i class="fa fa-code"></i> {{ _("Syntax Highlighting") }}</a></li>
+      <li><a data-target="#expiration"><i class="fa fa-clock-o"></i> {{ _("TTL") }}</a></li>
+      <li><a data-target="#line_numbers"><i class="fa fa-list-ol"></i> {{ _("Toggle Line Numbers") }}</a></li>
+      <li><a data-target="#password"><i class="fa fa-lock"></i> {{ _("Set Paste Password") }}</a></li>
+    </ul>
+  </div>
+</nav>

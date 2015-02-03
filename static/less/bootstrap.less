@@ -1,10 +1,14 @@
 // Core variables and mixins
 @import "variables.less";
+@import "include/variables.less";
 @import "mixins.less";
 
-// Reset
+// Reset and dependencies
 @import "normalize.less";
 @import "print.less";
+
+// Custom Icon Fonts
+@import "font-awesome.less";
 
 // Core CSS
 @import "scaffolding.less";
@@ -22,15 +26,19 @@
 @import "input-groups.less";
 @import "navs.less";
 @import "navbar.less";
+@import "breadcrumbs.less";
 @import "pagination.less";
 @import "pager.less";
 @import "labels.less";
 @import "badges.less";
+@import "jumbotron.less";
+@import "thumbnails.less";
 @import "alerts.less";
 @import "progress-bars.less";
 @import "media.less";
 @import "list-group.less";
 @import "panels.less";
+@import "responsive-embed.less";
 @import "wells.less";
 @import "close.less";
 
@@ -39,11 +47,8 @@
 @import "tooltip.less";
 @import "popovers.less";
 
-// Custom Icon Fonts
-@import "font-awesome.less";
-
 // Private Paste Specific Stuff
-@import "privatepaste.less";
+@import "include/privatepaste.less";
 
 // Codemirror
 @import (inline) "lib/codemirror.css";
@@ -51,5 +56,5 @@
 @import (inline) "addon/lint/lint.css";
 
 // Utility classes
-@import "utilities.less"; // Has to be last to override when necessary
+@import "utilities.less";
 @import "responsive-utilities.less";

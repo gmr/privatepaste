@@ -15,7 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.0",
+    "bootstrap": "~3.3.2",
     "codemirror": "~4.12.0",
     "font-awesome": "~4.3.0",
     "jquery": "~2.1.1",

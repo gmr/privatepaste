@@ -1,18 +1,30 @@
 #codemirror {
+  position: relative;
   height: 100%;
   min-height: 100%;
-  width: 100%;
-  border-right: 1px solid @gray-lighter;
-}
 
-.lint-border-default {
-  border-top: 1px transparent;
-}
+  .CodeMirror {
+    ::-webkit-scrollbar {
+      -webkit-appearance: none;
+    }
 
-.lint-border-success {
-  border-top: 1px solid @brand-success;
-}
+    ::-webkit-scrollbar:vertical {
+        width: 11px;
+    }
 
-.lint-border-warning {
-  border-top: 1px solid @brand-warning;
+    .frame::-webkit-scrollbar:horizontal {
+        height: 11px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        border: 2px solid white; /* should match background, can't be transparent */
+        background-color: rgba(0, 0, 0, .5);
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #fff;
+        border-radius: 8px;
+    }
+  }
 }
