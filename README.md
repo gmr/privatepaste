@@ -21,8 +21,7 @@ TODO
 - ~~Add HTTP request headers to paste~~
 - ~~Add mime-type to paste~~
 - ~~Update sanitize to omit request headers and remote ip~~
-- ~~Download Paste~~
-- Upload binary paste via JS drag/drop
+- Notification of new paste URL on save
 - Copy Paste
 - Disable Edit
 - Content Scanning / Blocking

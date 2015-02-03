@@ -44,12 +44,6 @@ get() ->
                         []
                     },
                     {
-                        "/edit/[:paste_id]",
-                        [{paste_id, fun(Id) -> is_paste_id(Id) end}],
-                        privpaste_handler_editor,
-                        []
-                    },
-                    {
                         "/[:paste_id]",
                          [{paste_id, fun(Id) -> is_paste_id(Id) end}],
                          privpaste_handler_paste,

@@ -7,7 +7,6 @@ requirejs.config({
     underscore: 'vendor/underscore-min',
     moment: 'vendor/moment.min',
     codemirror: 'vendor/codemirror',
-    dropzone: 'vendor/dropzone',
     editor: 'app/views/editor',
     pasteView: 'app/views/paste-view'
   },

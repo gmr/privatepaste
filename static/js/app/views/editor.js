@@ -1,39 +1,33 @@
 define(['backbone',
         'underscore',
-        'dropzone',
         'app/models/paste',
         'app/syntax',
         'codemirror/lib/codemirror',
         'codemirror/addon/selection/active-line'],
-    function(Backbone, _, Dropzone, Paste, syntax, CodeMirror) {
+    function(Backbone, _, Paste, syntax, CodeMirror) {
         return Backbone.View.extend({
 
             events: {
-                'change input[name="line_numbers"]': 'onLineNumToggle',
-                'change input[name="secure-paste"]': 'onSecurePasteChange',
-                'change #ttl':                       'onTTLChange',
-                'change #syntax':                    'onSyntaxChange',
-                'click #save':                       'savePaste',
-                'click #upload .close':              'closeUploadForm'
+                'change input[name="line_numbers"]':  'onLineNumToggle',
+                'change input[name="secure-paste"]':  'onSecurePasteChange',
+                'change #ttl':                        'onTTLChange',
+                'change #syntax':                     'onSyntaxChange',
+                'click #save':                        'savePaste'
             },
 
-            dropzone: undefined,
-
             initialize: function(){
-                Dropzone.autoDiscover = false;
                 this.saveButton = this.$el.find('#save');
                 this.redirect = this.$el.find('#redirect');
-                this.$upload = $('#upload');
                 this.model = new Paste({syntax: document.getElementById('syntax').value,
                                         ttl: document.getElementById('ttl').value});
 
                 this.model.on('change', this.render, this);
-                this.cm = CodeMirror(document.getElementById('editor'),
-                                   {autofocus: true,
-                                    lineWrapping: true,
-                                    lineNumbers: true,
-                                    matchBrackets: true,
-                                    styleActiveLine: true});
+                this.cm = CodeMirror(document.getElementById('codemirror'),
+                                     {autofocus: true,
+                                      lineWrapping: true,
+                                      lineNumbers: true,
+                                      matchBrackets: true,
+                                      styleActiveLine: true});
                 this.cm.setSize('auto', '100%');
                 this.cm.on('change', _.bind(function(editor, changes){
                     if (!editor.isClean()) {
@@ -41,43 +35,6 @@ define(['backbone',
                     }
                 }, this));
                 this.render();
-                if (document.location.hash == '#upload') {
-                    this.showUpload();
-                }
-                $('a[href="/#upload"]').on('click', _.bind(function(e){
-                    e.preventDefault();
-                    this.showUpload();
-                }, this));
-
-            },
-
-            showUpload: function() {
-                if (this.dropzone === undefined) this.createDropzone();
-                this.$upload.show();
-            },
-
-            dropzoneCleanup: function() {
-                this.dropzone.removeAllFiles();
-            },
-
-            closeUploadForm: function(e) {
-                e.preventDefault();
-                this.$upload.hide();
-                this.dropzoneCleanup();
-            },
-
-            createDropzone: function() {
-                this.dropzone = new Dropzone(this.$upload.find('.dropzone')[0], {
-                    autoProcessQueue: false,
-                    uploadMultiple: false,
-                    dictDefaultMessage: 'Drop file',
-                    url: "/upload",
-                    paramName: "file", // The name that will be used to transfer the file
-                    maxFilesize: 2, // MB
-                    accept: function(file, done) {
-                        done();
-                    }
-                });
             },
 
             render: function() {
@@ -136,7 +93,6 @@ define(['backbone',
             onTTLChange: function(event) {
                 this.model.set('ttl', event.target.value);
             }
-
-            });
+        });
 
 });

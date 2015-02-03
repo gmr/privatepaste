@@ -1,10 +1,7 @@
-<div class="alert alert-dismissable">
+<div class="alert alert-dismissable alert-info">
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true" title="Close">&times;</button>
   <div class="alert-message">
-    <span class="fa-stack">
-      <i class="fa fa-square fa-stack-2x"></i>
-      <i></i>
-    </span>
-    <span class="message"></span>
+    <i class="fa fa-square"></i>
+    <span class="message">Example Alert</span>
   </div>
 </div>

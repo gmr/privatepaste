@@ -49,6 +49,7 @@ to_record(Data) ->
            views = privpaste_util:get_int_from_proplist(views, Data),
            syntax = privpaste_util:get_binary_from_proplist(syntax, Data),
            line_numbers = privpaste_util:get_atom_from_proplist(line_numbers, Data, false),
+           mime_type = privpaste_util:get_binary_from_proplist(mime_type, Data),
            content = privpaste_util:get_binary_from_proplist(content, Data)}.
 
 %% ------------------------------------------------------------------

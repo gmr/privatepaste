@@ -3,6 +3,8 @@
 {% block body %}edit{% endblock %}
 {% block content %}
 <div id="sidebar" class="hidden-xs">{% include "app/editor/sidebar.dtl" %}</div>
-<div id="editor"></div>
-<div id="upload">{% include "app/editor/upload.dtl" %}</div>
+<div id="editor">
+    {% include "app/editor/notification.dtl" %}
+    <div id="codemirror"></div>
+</div>
 {% endblock %}

@@ -18,9 +18,8 @@ PO_PATH = $(GETTEXT_DIR)/lang/default/$(DEFAULT_LANGUAGE)
 BOOTSTRAP = bower_components/bootstrap
 CODEMIRROR = bower_components/codemirror
 FONTAWESOME = bower_components/font-awesome
-DROPZONE = bower_components/dropzone/dist
 
-LESS_INCLUDE = ${BOOTSTRAP}/less:${CODEMIRROR}/lib:${FONTAWESOME}/less:${CODEMIRROR}:${DROPZONE}
+LESS_INCLUDE = ${BOOTSTRAP}/less:${CODEMIRROR}/lib:${FONTAWESOME}/less:${CODEMIRROR}
 LESS_IN = static/less/bootstrap.less
 CSS_OUT = static/css/privatepaste.css
 
@@ -36,7 +35,6 @@ bower:
 	@( cp bower_components/requirejs/require.js static/js/ )
 	@( cp bower_components/underscore/underscore-min.js static/js/vendor/ )
 	@( cp bower_components/moment/min/moment.min.js static/js/vendor/ )
-	@( cp bower_components/dropzone/dist/dropzone-amd-module.js static/js/vendor/dropzone.js )
 	@( cp -r $(CODEMIRROR) static/js/vendor/ )
 	@( mkdir -p static/fonts )
 	@( cp $(FONTAWESOME)/fonts/* static/fonts/ )
