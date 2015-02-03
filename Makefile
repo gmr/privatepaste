@@ -38,6 +38,7 @@ bower:
 	@( cp -r $(CODEMIRROR) static/js/vendor/ )
 	@( mkdir -p static/fonts )
 	@( cp $(FONTAWESOME)/fonts/* static/fonts/ )
+	@( cp bower_components/lodash/lodash.min.js static/js/vendor/ )
 
 less:
 	@( $(LESSC) --verbose --strict-imports --source-map=${CSS_OUT}.map --include-path=${LESS_INCLUDE} ${LESS_IN} ${CSS_OUT} )

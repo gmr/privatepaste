@@ -1,5 +1,5 @@
 define(['backbone',
-        'underscore',
+        'lodash',
         'app/models/paste',
         'app/syntax',
         'codemirror/lib/codemirror',
