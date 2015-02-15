@@ -27,6 +27,16 @@ get() ->
                         []
                     },
                     {
+                        "/robots.txt",
+                        cowboy_static,
+                        {file, "static/robots.txt", [{mimetypes, {<<"text">>, <<"plain">>, []}}]}
+                    },
+                    {
+                        "/favicon.ico",
+                        cowboy_static,
+                        {file, "static/ico/privatepaste.ico", [{mimetypes, {<<"image">>, <<"x-icon">>, []}}]}
+                    },
+                    {
                         "/info",
                         privpaste_handler_info,
                         []
