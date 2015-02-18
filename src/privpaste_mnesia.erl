@@ -6,7 +6,6 @@
 %% API
 -export([start/0,
          backup/0,
-         join/1,
          reset/0,
          restore/0]).
 
@@ -57,7 +56,6 @@ is_node_reachable(Node) ->
 
 join(Nodes) ->
     BNode = lists:nth(1, Nodes),
-    lager:log(info, self(), "Performing a remote backup on ~p", [BNode]),
     rpc:call(BNode, privpaste_mnesia, backup, []),
     All = maybe_add_local_node(Nodes),
     rpc:multicall(All, privpaste_mnesia, reset, []),
@@ -113,7 +111,5 @@ node_list() ->
     maybe_remove_local_node(N2).
 
 reset() ->
-    lager:log(info, self(), "Stopping mnesia"),
     mnesia:stop(),
     mnesia:delete_schema([node()]).
-
