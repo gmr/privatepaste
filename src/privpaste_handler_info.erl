@@ -40,6 +40,7 @@ data(Req, JSON) ->
      {language, privpaste_util:get_language(Req)},
      {languages, [list_to_binary(L) || L <- gettext:all_lcs()]},
      {node, erlang:node()},
+     {nodes, length(mnesia:system_info(db_nodes))},
      {system_version, list_to_binary(erlang:system_info(system_version))},
      {proc_count, erlang:system_info(process_count)},
      {architecture, list_to_binary(erlang:system_info(system_architecture))},
@@ -53,6 +54,6 @@ maybe_escape_keys(Headers, _) ->
 
 mnesia_stats() ->
     [{active_transactions, length(mnesia:system_info(transactions))},
-    {queued_transactions, length(mnesia:system_info(lock_queue))},
-    {transaction_commits, mnesia:system_info(transaction_commits)},
-    {transaction_failures, mnesia:system_info(transaction_failures)}].
+     {queued_transactions, length(mnesia:system_info(lock_queue))},
+     {transaction_commits, mnesia:system_info(transaction_commits)},
+     {transaction_failures, mnesia:system_info(transaction_failures)}].

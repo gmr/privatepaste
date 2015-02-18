@@ -4,26 +4,28 @@
 <div class="container" id="info">
   <br>
   <div class="panel panel-default">
-    <div class="panel-heading"><strong class="text-primary">{{ _("Application Report") }}</strong></div>
+    <div class="panel-heading"><strong class="text-primary"><i class="fa fa-server"></i> {{ _("Application Report") }}</strong></div>
     <div class="panel-body">
       <dl class="dl-horizontal">
         <dt>{{ _("Node") }}</dt>
-        <dd><code>{{ node }}</code></dd>
+        <dd><samp>{{ node }}</samp></dd>
         <dt>{{ _("Erlang Version") }}</dt>
-        <dd><code>{{ system_version }}</code></dd>
+        <dd><samp>{{ system_version }}</samp></dd>
+        <dt>{{ _("Cluster Nodes") }}</dt>
+        <dd><samp>{{ nodes|intcomma }}</samp></dd>
         <dt>{{ _("Running Processes") }}</dt>
-        <dd>{{ proc_count|intcomma }}</dd>
+        <dd><samp>{{ proc_count|intcomma }}</samp></dd>
         <dt>{{ _("System Architecture") }}</dt>
-        <dd><code>{{ architecture }}</code></dd>
+        <dd><samp>{{ architecture }}</samp></dd>
         <dt>{{ _("Language") }}</dt>
-        <dd><code>{{ language }}</code></dd>
+        <dd><samp>{{ language }}</samp></dd>
       </dl>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-6">
       <div class="panel panel-default">
-        <div class="panel-heading"><strong class="text-primary">{{ _("Loaded Applications") }}</strong></div>
+        <div class="panel-heading"><strong class="text-primary"><i class="fa fa-gears"></i> {{ _("Loaded Applications") }}</strong></div>
         <table class="table table-hover table-striped table-bordered">
           <thead>
             <tr>
@@ -36,7 +38,7 @@
           {% for key, desc, version in apps %}
             <tr>
               <td><strong>{{ key }}</strong></td>
-              <td><code>{{ version }}</code></td>
+              <td><var>{{ version }}</var></td>
               <td>{{ desc }}</td>
             </tr>
           {% endfor %}
@@ -46,7 +48,7 @@
     </div>
     <div class="col-sm-6">
       <div class="panel panel-default">
-        <div class="panel-heading"><strong class="text-primary">{{ _("Memory Utilization") }}</strong></div>
+        <div class="panel-heading"><strong class="text-primary"><i class="fa fa-calculator"></i> {{ _("Memory Utilization") }}</strong></div>
         <table class="table table-hover table-striped table-bordered">
           <thead>
             <tr>
@@ -66,7 +68,7 @@
       </div>
       <div class="panel panel-default">
         <div class="panel-heading">
-            <strong class="text-primary">{{ _("Mnesia Statistics") }}</strong>
+            <strong class="text-primary"><i class="fa fa-database"></i> {{ _("Mnesia Info") }}</strong>
         </div>
         <table class="table table-hover table-striped table-bordered">
           <thead>
@@ -88,13 +90,13 @@
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading"><strong class="text-primary">{{ _("Request Headers") }}</strong></div>
+    <div class="panel-heading"><strong class="text-primary"><i class="fa fa-archive"></i> {{ _("Request Headers") }}</strong></div>
     <table class="table table-hover table-striped table-bordered">
       <tbody>
       {% for row in headers %}{% for key, value in row %}
         <tr>
           <td><strong>{{ key }}</strong></td>
-          <td><code>{{ value }}</code></td>
+          <td><samp>{{ value }}</samp></td>
         </tr>
       {% endfor %}{% endfor %}
       </tbody>
