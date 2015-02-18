@@ -13,6 +13,7 @@ apt-get -y -q install erlang git gettext nodejs libmagic-dev
 apt-get -q clean
 echo "VSSRTIKSRMKWXYPDLJKX" > /home/vagrant/.erlang.cookie
 chmod 0400 /home/vagrant/.erlang.cookie
+chown vagrant:vagrant /home/vagrant/.erlang.cookie
 sudo npm install -g bower less
 INSTALL
 
