@@ -12,6 +12,8 @@ Build requirements
   - bower
   - less
 
+Multi-node development in vagrant requires the vagrant-hosts plugin.
+
 TODO
 ----
 

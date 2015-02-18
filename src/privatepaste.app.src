@@ -10,13 +10,15 @@
      cowboy,
      jsx,
      gettext,
-     erlydtl
+     erlydtl,
+     mnesia
     ]},
   {modules, []},
   {mod, {privatepaste, []}},
   {env, [{http_port, 8080},
          {http_listener_count, 100},
          {http_timeout, 12000},
-         {http_compress, true}]}
+         {http_compress, true},
+         {nodes, []}]}
  ]
 }.

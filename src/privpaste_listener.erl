@@ -27,6 +27,7 @@ start_link() ->
 %% ------------------------------------------------------------------
 
 init([]) ->
+    privpaste_mnesia:start(),
     Dispatch = privpaste_routes:get(),
     cowboy:start_http(privpaste_cowboy_listener,
                       listener_count(),

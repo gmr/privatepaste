@@ -3,6 +3,7 @@ ebin
 .rebar
 _rel
 .DS_Store
+.vagrant
 .beam
 .idea
 deps

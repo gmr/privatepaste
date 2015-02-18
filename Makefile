@@ -1,6 +1,6 @@
 LESSC = `which lessc`
-REBAR = `which rebar`
-RELX = `which relx`
+REBAR = "bin/rebar"
+RELX = "bin/relx"
 XGETTEXT = `which xgettext`
 
 NAME = PrivatePaste
@@ -61,6 +61,11 @@ clean:
 
 run:
 	@( erl +W w -pa ebin deps/*/ebin -config rel/sys.config -sname privatepaste -sync log all -s privatepaste )
+
+run_cluster:
+	@( sudo mkdir -p /var/lib/privatepaste/db )
+	@( sudo chown -R vagrant /var/lib/privatepaste )
+	@( erl +W w -pa ebin deps/*/ebin -config cluster.config -sname privatepaste -sync log all -s privatepaste )
 
 release: compile
 	@( $(RELX) release )

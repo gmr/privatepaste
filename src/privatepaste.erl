@@ -22,10 +22,4 @@ stop(_State) ->
     ok.
 
 startApplication() ->
-    application:set_env(gettext, gettext_dir, "translations"),
-    mnesia:create_schema([node()]),
-    mnesia:start(),
-    mnesia:create_table(pastes, [{attributes, record_info(fields, paste)},
-                                 {disc_copies, [node()]},
-                                 {record_name, paste},
-                                 {type, set}]).
+    application:set_env(gettext, gettext_dir, "translations").
