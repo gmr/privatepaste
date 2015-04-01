@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PrivatePaste 2.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-02 22:57-0500\n"
+"POT-Creation-Date: 2015-04-01 13:56-0400\n"
 "PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Gavin M. Roy <gavinmroy@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/info.dtl:30
+#: templates/info.dtl:32
 msgid "Application"
 msgstr "Application"
 
@@ -25,15 +25,31 @@ msgstr "Application"
 msgid "Application Report"
 msgstr "Application Report"
 
-#: templates/info.dtl:54
+#: templates/info.dtl:56
 msgid "Bytes"
 msgstr "Bytes"
+
+#: templates/app/editor/password.dtl:25
+msgid "Cancel"
+msgstr "Cancel"
+
+#: templates/app/editor/password.dtl:19
+msgid ""
+"Click the cog button (<i class=\"fa fa-cog\"></i>) to generate a random "
+"password."
+msgstr ""
+"Click the cog button (<i class=\"fa fa-cog\"></i>) to generate a random "
+"password."
+
+#: templates/info.dtl:14
+msgid "Cluster Nodes"
+msgstr "Cluster Nodes"
 
 #: templates/app/view/sidebar.dtl:52
 msgid "Copy"
 msgstr "Copy"
 
-#: templates/info.dtl:75
+#: templates/info.dtl:77
 msgid "Count"
 msgstr "Count"
 
@@ -41,7 +57,7 @@ msgstr "Count"
 msgid "Created"
 msgstr "Created"
 
-#: templates/info.dtl:32
+#: templates/info.dtl:34
 msgid "Description"
 msgstr "Description"
 
@@ -57,19 +73,31 @@ msgstr "Erlang Version"
 msgid "Error"
 msgstr "Error"
 
+#: templates/includes/navigation.dtl:17
+msgid "Help"
+msgstr "Help"
+
 #: templates/app/view/sidebar.dtl:14
 msgid "ID"
 msgstr "ID"
+
+#: templates/app/editor/password.dtl:9
+msgid ""
+"If you would like to require viewers to enter a password prior to viewing "
+"this paste, enter it here."
+msgstr ""
+"If you would like to require viewers to enter a password prior to viewing "
+"this paste, enter it here."
 
 #: templates/app/view/sidebar.dtl:6
 msgid "Info"
 msgstr "Info"
 
-#: templates/info.dtl:53 templates/info.dtl:74
+#: templates/info.dtl:55 templates/info.dtl:76
 msgid "Key"
 msgstr "Key"
 
-#: templates/info.dtl:18
+#: templates/info.dtl:20
 msgid "Language"
 msgstr "Language"
 
@@ -81,19 +109,19 @@ msgstr "Line Numbers"
 msgid "Lines"
 msgstr "Lines"
 
-#: templates/info.dtl:26
+#: templates/info.dtl:28
 msgid "Loaded Applications"
 msgstr "Loaded Applications"
 
-#: templates/info.dtl:49
+#: templates/info.dtl:51
 msgid "Memory Utilization"
 msgstr "Memory Utilization"
 
-#: templates/info.dtl:69
-msgid "Mnesia Statistics"
-msgstr "Mnesia Statistics"
+#: templates/info.dtl:71
+msgid "Mnesia Info"
+msgstr "Mnesia Info"
 
-#: templates/app/editor.dtl:2 templates/includes/navigation.dtl:14
+#: templates/app/editor.dtl:2 templates/includes/navigation.dtl:13
 msgid "New Paste"
 msgstr "New Paste"
 
@@ -113,16 +141,16 @@ msgstr "Off"
 msgid "On"
 msgstr "On"
 
-#: templates/app/editor/sidebar.dtl:6
+#: templates/includes/footer.dtl:14 templates/app/editor/sidebar.dtl:6
 msgid "Options"
 msgstr "Options"
 
-#: templates/includes/navigation.dtl:15
+#: templates/includes/navigation.dtl:14
 msgid "Paste Index"
 msgstr "Paste Index"
 
 #: templates/base.dtl:4 templates/error.dtl:2 templates/app/editor.dtl:2
-#: templates/app/view.dtl:2 templates/includes/navigation.dtl:10
+#: templates/app/view.dtl:2 templates/includes/navigation.dtl:9
 msgid "PrivatePaste.com"
 msgstr "PrivatePaste.com"
 
@@ -142,7 +170,7 @@ msgstr "Report Paste"
 msgid "ReportInformation"
 msgstr "ReportInformation"
 
-#: templates/info.dtl:91
+#: templates/info.dtl:93
 msgid "Request Headers"
 msgstr "Request Headers"
 
@@ -150,7 +178,7 @@ msgstr "Request Headers"
 msgid "Revision"
 msgstr "Revision"
 
-#: templates/info.dtl:14
+#: templates/info.dtl:16
 msgid "Running Processes"
 msgstr "Running Processes"
 
@@ -158,31 +186,61 @@ msgstr "Running Processes"
 msgid "Save"
 msgstr "Save"
 
-#: templates/app/editor/sidebar.dtl:46 templates/app/view/sidebar.dtl:32
+#: templates/includes/footer.dtl:17
+msgid "Save Paste"
+msgstr "Save Paste"
+
+#: templates/app/editor/password.dtl:6 templates/app/editor/sidebar.dtl:46
+#: templates/app/view/sidebar.dtl:32
 msgid "Secure Paste"
 msgstr "Secure Paste"
+
+#: templates/app/editor/password.dtl:26
+msgid "Set Password"
+msgstr "Set Password"
+
+#: templates/includes/footer.dtl:25
+msgid "Set Paste Password"
+msgstr "Set Paste Password"
 
 #: templates/app/editor/sidebar.dtl:14 templates/app/view/sidebar.dtl:26
 msgid "Syntax"
 msgstr "Syntax"
 
-#: templates/info.dtl:16
+#: templates/includes/footer.dtl:22
+msgid "Syntax Highlighting"
+msgstr "Syntax Highlighting"
+
+#: templates/info.dtl:18
 msgid "System Architecture"
 msgstr "System Architecture"
 
-#: templates/app/editor/sidebar.dtl:24 templates/app/view/sidebar.dtl:16
+#: templates/includes/footer.dtl:23 templates/app/editor/sidebar.dtl:24
+#: templates/app/view/sidebar.dtl:16
 msgid "TTL"
 msgstr "TTL"
 
-#: templates/includes/footer.dtl:2
+#: templates/includes/footer.dtl:3
 msgid "Terms & Conditions"
 msgstr "Terms & Conditions"
+
+#: templates/includes/navigation.dtl:18
+msgid "Terms &amp; Conditions"
+msgstr "Terms &amp; Conditions"
+
+#: templates/includes/footer.dtl:24
+msgid "Toggle Line Numbers"
+msgstr "Toggle Line Numbers"
+
+#: templates/includes/navigation.dtl:4
+msgid "Toogle Navigation"
+msgstr "Toogle Navigation"
 
 #: templates/app/view/sidebar.dtl:21
 msgid "Updated"
 msgstr "Updated"
 
-#: templates/info.dtl:31
+#: templates/info.dtl:33
 msgid "Version"
 msgstr "Version"
 

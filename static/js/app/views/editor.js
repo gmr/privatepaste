@@ -2,26 +2,32 @@ define(['backbone',
         'lodash',
         'app/models/paste',
         'app/syntax',
+        'app/views/editor/secure-modal',
+        'app/views/editor/sidebar',
         'codemirror/lib/codemirror',
         'codemirror/addon/selection/active-line'],
-    function(Backbone, _, Paste, syntax, CodeMirror) {
+    function(Backbone, _, Paste, syntax,  SecureModal, Sidebar, CodeMirror) {
         return Backbone.View.extend({
 
-            events: {
-                'change input[name="line_numbers"]':  'onLineNumToggle',
-                'change input[name="secure-paste"]':  'onSecurePasteChange',
-                'change #ttl':                        'onTTLChange',
-                'change #syntax':                     'onSyntaxChange',
-                'click #save':                        'savePaste'
-            },
-
             initialize: function(){
-                this.saveButton = this.$el.find('#save');
                 this.redirect = this.$el.find('#redirect');
+
                 this.model = new Paste({syntax: document.getElementById('syntax').value,
                                         ttl: document.getElementById('ttl').value});
 
-                this.model.on('change', this.render, this);
+                this.sidebar = new Sidebar({el: document.getElementById('sidebar'),
+                                            model: this.model});
+
+                this.secureModal = new SecureModal({el: this.$el.find('#secure-modal'),
+                                                    model: this.model});
+
+                this.model.on('change:line_numbers', this.render, this);
+                this.model.on('change:syntax', this.render, this);
+                this.listenTo(Backbone, 'editor:secure-modal:show',
+                              _.bind(function(e) {
+                                         this.secureModal.show();
+                                     }, this));
+
                 this.cm = CodeMirror(document.getElementById('codemirror'),
                                      {autofocus: true,
                                       lineWrapping: true,
@@ -38,26 +44,25 @@ define(['backbone',
             },
 
             render: function() {
-                var syntax = this.model.get('syntax');
-                var syntaxName = syntax[syntax] !== undefined ? syntax[syntax].name : syntax;
-                if (this.cm.getOption('mode') != syntaxName) this.changeSyntax(syntax, syntaxName);
-                if (this.model.get('content').length > 10) {
-                    this.saveButton.removeClass('disabled');
-                } else {
-                    this.saveButton.addClass('disabled');
+                // Maybe change the syntax
+                if (this.model.hasChanged('syntax') === true) {
+                    var syntax = this.model.get('syntax');
+                    var syntaxName = syntax[syntax] !== undefined ? syntax[syntax].name : syntax;
+                    if (this.cm.getOption('mode') != syntaxName) this.changeSyntax(syntax, syntaxName);
                 }
-                return this;
-            },
 
-            savePaste: function() {
-                this.model.save(null, {
-                    error: function(model, response, options) {
-                        console.log("Error saving model", response);
-                    },
-                    success: function(model, response, options){
-                        window.location.pathname = '/' + model.get('id');
+                // Maybe change the line number and gutter settings
+                if (this.model.hasChanged('line_numbers') === true) {
+                    var lineNumbers = this.model.get('line_numbers');
+                    if (this.cm.getOption('lineNumbers') != lineNumbers) {
+                        var gutters = [];
+                        if (lineNumbers === true) gutters.push('CodeMirror-linenumbers');
+                        this.cm.setOption('lineNumbers', lineNumbers);
+                        this.cm.setOption('gutters', gutters);
                     }
-                });
+                }
+
+                return this;
             },
 
             changeSyntax: function(syntax, syntaxName) {
@@ -70,29 +75,10 @@ define(['backbone',
                     }, this));
                 } else if (syntax != 'none') {
                     require(['codemirror/mode/' + syntax + '/' + syntax],
-                        _.bind(function(_mode) {
-                        this.cm.setOption('mode', syntax);
-                    }, this));
+                            _.bind(function(_mode) {
+                                        this.cm.setOption('mode', syntax);
+                                   }, this));
                 }
-            },
-
-            getSyntaxName: function(syntax) {
-                if (syntax[syntax] !== undefined)
-                    return syntax[syntax].name;
-                return syntax;
-            },
-
-            onLineNumToggle: function(event) {
-                this.model.set('line_numbers', event.target.value == 'on');
-            },
-
-            onSyntaxChange: function(event) {
-                this.model.set('syntax', event.target.value);
-            },
-
-            onTTLChange: function(event) {
-                this.model.set('ttl', event.target.value);
             }
         });
-
 });
