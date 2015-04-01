@@ -32,7 +32,7 @@ TODO
  - Config based secure cookie signing salt
  - Flagged clients in browser get recaptcha
  - Recaptcha
-- Secure Paste password entry
+- ~~Secure Paste password entry~~
 - Report Paste
 - DB Import for current version
 - Hostname specific settings
