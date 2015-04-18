@@ -106,9 +106,19 @@ maybe_remove_local_node(Nodes) ->
     end.
 
 node_list() ->
-    N1 = application:get_env(privatepaste, nodes, []),
-    N2 = lists:takewhile(fun(N) -> is_node_reachable(N) end, N1),
+    N1 = get_os_env_list(),
+    Nodes = case N1 of
+        undefined -> application:get_env(privatepaste, nodes, []);
+        _  -> N1
+    end,
+    N2 = lists:takewhile(fun(N) -> is_node_reachable(N) end, Nodes),
     maybe_remove_local_node(N2).
+
+get_os_env_list() ->
+    case os:getenv("NODES") of
+        false -> undefined;
+        Value -> string:tokens(Value, ",")
+    end.
 
 reset() ->
     mnesia:stop(),
