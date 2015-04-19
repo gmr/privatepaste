@@ -35,6 +35,7 @@ init([]) ->
                       [{env, [{dispatch, Dispatch}]},
                        {timeout, timeout()},
                        {onresponse, fun on_response/4}]),
+    lager:info("Application started and listening"),
     {ok, {}}.
 
 handle_call(_Request, _From, State) ->
@@ -57,14 +58,14 @@ code_change(_OldVsn, State, _Extra) ->
 %% ------------------------------------------------------------------
 
 on_response(Code, Headers, _Body, Req) when is_integer(Code), Code >= 400 ->
-    lager:log(info, self(), "~p ~s ~s", [Code, cowboy_req:method(Req), cowboy_req:path(Req)]),
+    lager:info("~p ~s ~s", [Code, cowboy_req:method(Req), cowboy_req:path(Req)]),
     Subtype = get_subtype(Headers),
     {Headers1, Body} = get_error_response(Code, Subtype, Req),
     Req1 = cowboy_req:reply(Code, merge_headers(Headers, Headers1), Body, Req),
     Req1;
 
 on_response(Code, _Headers, _Body, Req) ->
-    lager:log(info, self(), "~p ~s ~s", [Code, cowboy_req:method(Req), cowboy_req:path(Req)]),
+    lager:info("~p ~s ~s", [Code, cowboy_req:method(Req), cowboy_req:path(Req)]),
     Req.
 
 %% ------------------------------------------------------------------
