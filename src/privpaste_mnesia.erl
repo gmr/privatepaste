@@ -7,7 +7,8 @@
 -export([start/0,
          backup/0,
          reset/0,
-         restore/0]).
+         restore/0,
+         node_list/0]).
 
 -include("privpaste.hrl").
 
@@ -15,21 +16,21 @@
 -define(WAIT_TIMEOUT, 60000).
 
 start() ->
-    lager:log(info, self(), "Starting privpaste_mnesia"),
+    lager:debug("Starting privpaste_mnesia"),
     mnesia:start(),
     maybe_initialize(),
-    maybe_wait_for_tables().
+    wait_for_tables().
 
 backup() ->
-    lager:log(info, self(), "Backing up the existing database"),
+    lager:info("Backing up the existing database"),
     mnesia:backup("/var/lib/privatepaste/backup.bup").
 
 restore() ->
-    lager:log(info, self(), "Restoring the database from a backup"),
+    lager:info("Restoring the database from a backup"),
     mnesia:restore("/var/lib/privatepaste/backup.bup", []).
 
 create_schema(Nodes) ->
-    lager:log(info, self(), "Creating schema with nodes: ~p", [Nodes]),
+    lager:info("Creating schema with nodes: ~p", [Nodes]),
     case mnesia:create_schema(Nodes) of
         ok -> ok;
         {error, Reason} -> lager:error("Error creating schema: ~p", [Reason])
@@ -45,6 +46,12 @@ create_tables(Nodes) ->
         {aborted, Reason} ->
             lager:log(error, self(), "Error creating table: ~p", [Reason]),
             error
+    end.
+
+get_os_env_list() ->
+    case os:getenv("NODES") of
+        false -> undefined;
+        Value -> [list_to_atom(N) || N <- string:tokens(Value, ",")]
     end.
 
 has_tables() ->
@@ -81,22 +88,10 @@ maybe_initialize() ->
             end
     end.
 
-maybe_wait_for_tables() ->
-    lager:log(info, self(), "Waiting for tables: ~p", [?TABLES]),
-    case mnesia:wait_for_tables(?TABLES, ?WAIT_TIMEOUT) of
-        ok -> ok;
-        {timeout, Tables} ->
-            lager:log(error, self(), "Timeout waiting for tables: ~p", [Tables]),
-            error;
-        {error, Reason} ->
-            lager:log(error, self(), "Error waiting for tables: ~p", [Reason]),
-            error
-    end.
-
 maybe_add_local_node(Nodes) ->
     case lists:member(node(), Nodes) of
         true -> Nodes;
-        false -> lists:merge([node()], Nodes)
+        false -> lists:merge(Nodes, [node()])
     end.
 
 maybe_remove_local_node(Nodes) ->
@@ -114,12 +109,18 @@ node_list() ->
     N2 = lists:takewhile(fun(N) -> is_node_reachable(N) end, Nodes),
     maybe_remove_local_node(N2).
 
-get_os_env_list() ->
-    case os:getenv("NODES") of
-        false -> undefined;
-        Value -> string:tokens(Value, ",")
-    end.
-
 reset() ->
     mnesia:stop(),
     mnesia:delete_schema([node()]).
+
+wait_for_tables() ->
+    lager:debug("Waiting for tables: ~p", [?TABLES]),
+    case mnesia:wait_for_tables(?TABLES, ?WAIT_TIMEOUT) of
+        ok -> ok;
+        {timeout, Tables} ->
+            lager:error("Timeout waiting for tables: ~p", [Tables]),
+            error;
+        {error, Reason} ->
+            lager:error("Error waiting for tables: ~p", [Reason]),
+            error
+    end.
