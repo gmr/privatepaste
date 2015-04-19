@@ -1,0 +1,10 @@
+## Name of the node
+-sname privatepaste
+-setcookie privatepaste
+-smp enable
++K true
++A 64
+
+-env ERL_MAX_PORTS 4096
+-env ERL_FULLSWEEP_AFTER 10
+-env ERL_CRASH_DUMP /var/lib/privatepaste/erl_crash.dump
